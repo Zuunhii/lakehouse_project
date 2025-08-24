@@ -1,0 +1,14 @@
+name: lakehouse_dbt
+version: 1.0.0
+config-version: 2
+
+profile: trino_iceberg
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target"]
+
+models:
+  lakehouse_dbt:
+    +materialized: table
+    +schema: silver

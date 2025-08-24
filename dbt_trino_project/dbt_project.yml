@@ -1,0 +1,12 @@
+name: dbt_trino_project
+version: 1.0.0
+profile: dbt_trino_project
+
+models:
+  dbt_trino_project:
+    bronze:
+      +schema: bronze
+    silver:
+      +schema: silver
+    gold:
+      +schema: gold

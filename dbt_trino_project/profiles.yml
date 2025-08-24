@@ -1,0 +1,13 @@
+dbt_trino_project:
+  target: dev
+  outputs:
+    dev:
+      type: trino
+      method: none
+      user: airflow
+      host: trino-coordinator
+      port: 8080
+      http_scheme: http
+      database: iceberg     # Trino catalog
+      schema: bronze        # default; model silver/gold đã map bằng dbt_project.yml
+      threads: 8

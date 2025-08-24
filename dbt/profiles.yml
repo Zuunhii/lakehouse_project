@@ -1,0 +1,11 @@
+trino_iceberg:
+  target: dev
+  outputs:
+    dev:
+      type: trino
+      host: trino-coordinator   # chạy bên trong Airflow network
+      port: 8080
+      user: airflow
+      catalog: iceberg
+      schema: silver
+      threads: 4
