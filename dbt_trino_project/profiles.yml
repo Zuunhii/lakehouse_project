@@ -1,13 +1,48 @@
+# profiles.yml
 dbt_trino_project:
   target: dev
   outputs:
     dev:
       type: trino
-      method: none
-      user: airflow
       host: trino-coordinator
       port: 8080
+      user: airflow
+      method: none
       http_scheme: http
-      database: iceberg     # Trino catalog
-      schema: bronze        # default; model silver/gold đã map bằng dbt_project.yml
-      threads: 8
+      catalog: iceberg
+      schema: silver 
+      threads: 4
+
+    # THÊM CẤU HÌNH CHO TỪNG MÔI TRƯỜNG
+    staging:
+      type: trino
+      host: trino-coordinator
+      port: 8080
+      user: airflow
+      method: none
+      http_scheme: http
+      catalog: iceberg
+      schema: bronze # Mặc định cho staging
+      threads: 4
+    
+    intermediate:
+      type: trino
+      host: trino-coordinator
+      port: 8080
+      user: airflow
+      method: none
+      http_scheme: http
+      catalog: iceberg
+      schema: silver # Mặc định cho intermediate
+      threads: 4
+
+    marts:
+      type: trino
+      host: trino-coordinator
+      port: 8080
+      user: airflow
+      method: none
+      http_scheme: http
+      catalog: iceberg
+      schema: gold # Mặc định cho marts
+      threads: 4

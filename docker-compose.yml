@@ -111,7 +111,9 @@ services:
     restart: "no"
 
   airflow-webserver:
-    image: apache/airflow:2.10.3-python3.11
+    build:
+      context: .                # thư mục có docker-compose.yml + Dockerfile.airflow
+      dockerfile: containers/airflow/Dockerfile.airflow
     container_name: AIRFLOW-WS
     depends_on:
       - airflow-init
@@ -120,19 +122,25 @@ services:
       AIRFLOW__CORE__LOAD_EXAMPLES: "False"
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db:5432/airflow
+      AIRFLOW__WEBSERVER__DAG_TRIGGER_BUTTON_ENABLED: "True"
+      AIRFLOW__CORE__DAG_RUN_CONF_ENABLED: "True"
+      AIRFLOW__WEBSERVER__SHOW_TRIGGER_FORM_IF_NO_PARAMS: "True"
+      DBT_PROFILES_DIR: /opt/airflow/dbt
     volumes:
       - ./dags:/opt/airflow/dags
       - airflow_logs:/opt/airflow/logs
-      - ./requirements.txt:/requirements.txt 
-      - ./dbt:/opt/airflow/dbt 
+      - ./dbt_trino_project:/opt/airflow/dbt 
+      # (không cần mount requirements.txt nữa vì đã COPY vào image trong Dockerfile)
     ports:
-      - "8081:8080"   # Airflow UI
-    command: bash -lc "pip install -r /requirements.txt && exec airflow webserver"
+      - "8081:8080"
+    command: bash -lc "exec airflow webserver"
     networks:
       - trino-network
 
   airflow-scheduler:
-    image: apache/airflow:2.10.3-python3.11
+    build:
+      context: .
+      dockerfile: containers/airflow/Dockerfile.airflow
     container_name: AIRFLOW-SCHED
     depends_on:
       - airflow-init
@@ -141,20 +149,61 @@ services:
       AIRFLOW__CORE__LOAD_EXAMPLES: "False"
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db:5432/airflow
+      AIRFLOW__CORE__DAG_RUN_CONF_ENABLED: "True"
+      DBT_PROFILES_DIR: /opt/airflow/dbt
     volumes:
       - ./dags:/opt/airflow/dags
       - airflow_logs:/opt/airflow/logs
-      - ./requirements.txt:/requirements.txt 
-      - ./dbt:/opt/airflow/dbt
-    command: bash -lc "pip install -r /requirements.txt && exec airflow scheduler"
+      - ./dbt_trino_project:/opt/airflow/dbt
+    ports:
+      - "8088:8088"
+    command: bash -lc "exec airflow scheduler"
     networks:
       - trino-network
+
+  metabase_db:
+    image: postgres:15
+    container_name: METABASE-DB
+    environment:
+      POSTGRES_USER: metabase
+      POSTGRES_PASSWORD: metabase
+      POSTGRES_DB: metabase
+    volumes:
+      - metabase_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U metabase -d metabase"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [trino-network]
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: METABASE
+    depends_on:
+      metabase_db:
+        condition: service_healthy
+    ports:
+      - "3000:3000"                  # UI: http://localhost:3000
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_USER: metabase
+      MB_DB_PASS: metabase
+      MB_DB_HOST: metabase_db
+      MB_DB_PORT: 5432
+      JAVA_TIMEZONE: Asia/Bangkok
+    networks: [trino-network]
+
+
 
 volumes:
   airflow_db:
   airflow_logs:
   minio_data:  
   mariadb_data: 
+  metabase_db_data:
+
 networks:
   trino-network:
     driver: bridge

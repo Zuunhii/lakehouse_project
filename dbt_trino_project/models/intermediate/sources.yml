@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: silver_src
+    database: iceberg
+    schema: silver # Sửa từ 'bronze' thành 'silver'
+    tables:
+      # Bạn nên thêm tất cả các bảng từ schema 'silver' vào đây
+      - name: silver_person_address
+      - name: silver_person_countryregion
+      - name: silver_person_person
+      - name: silver_person_stateprovince
+      - name: silver_production_product # Thêm bảng này vào
+      - name: silver_production_productcategory
+      - name: silver_production_productsubcategory
+      - name: silver_sales_creditcard
+      - name: silver_sales_customer
+      - name: silver_sales_salesorderdetail
+      - name: silver_sales_salesorderheader
+      - name: silver_sales_salesorderheadersalesreason
+      - name: silver_sales_salesreason
+      - name: silver_sales_store

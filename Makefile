@@ -38,6 +38,14 @@ schemas-check:
 		-e "SHOW SCHEMAS FROM iceberg;"
 
 # ---------- tiện ích ----------
+
+# 5) Tạo external tables cho Bronze (Hive catalog minio)
+bronze:
+	@echo ">> create external tables in bronze (minio)"
+	@docker exec $(TRINO_CONTAINER) trino --server http://localhost:8080 \
+		-f /run-trino-sql/01_create_bronze_external.sql
+	@echo ">> bronze tables done"
+
 down:
 	docker compose down
 

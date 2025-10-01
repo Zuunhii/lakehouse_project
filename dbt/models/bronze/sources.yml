@@ -1,6 +1,0 @@
-version: 2
-sources:
-  - name: bronze_src
-    schema: bronze
-    tables:
-      - name: orders_raw        # đổi tên theo bảng thật của bạn

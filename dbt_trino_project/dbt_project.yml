@@ -1,12 +1,27 @@
+# dbt_project.yml
 name: dbt_trino_project
 version: 1.0.0
+config-version: 2
+
 profile: dbt_trino_project
+model-paths: ["models"]
+macro-paths: ["macros"]
+
 
 models:
   dbt_trino_project:
-    bronze:
+
+    staging: 
       +schema: bronze
-    silver:
+      +tags: ["staging", "bronze"]
+      +materialized: view
+
+    intermediate:
       +schema: silver
-    gold:
+      +tags: ["intermediate", "silver"]
+      +materialized: table
+
+    marts:
       +schema: gold
+      +tags: ["marts", "gold"]
+      +materialized: table

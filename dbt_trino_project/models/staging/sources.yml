@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: silver_src
+    database: iceberg         # catalog Iceberg
+    schema: bronze            # schema Iceberg cho Bronze
+    tables:
+      - name: silve_person_address

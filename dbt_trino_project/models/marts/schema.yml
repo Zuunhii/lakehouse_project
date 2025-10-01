@@ -1,0 +1,134 @@
+version: 2
+
+models:
+# ========================Dimension==========================
+  - name: dim_product
+    columns:
+      - name: product_id_WID 
+        description: The surrogate key of the product
+        tests:
+          - not_null
+          - unique
+      - name: INTEGRATION_ID 
+        description: The natural key of the product
+        tests:
+          - not_null
+          - unique
+      - name: product_name 
+        description: The product name
+        tests:
+          - not_null
+
+  - name: dim_address
+    columns:
+      - name: address_id_WID
+        description: The surrogate key of the address
+        tests:
+          - not_null
+          - unique
+      - name: INTEGRATION_ID
+        description: The natural key of the address (addressid)
+        tests:
+          - not_null
+          - unique
+      - name: addressline1
+        description: First address line
+        tests:
+          - not_null
+
+  - name: dim_customer
+    description: Dimension table for customers (individuals and stores)
+    columns:
+      - name: customer_id_WID
+        description: Surrogate key của customer (ổn định theo customerid)
+        tests:
+          - unique
+          - not_null
+
+      - name: INTEGRATION_ID
+        description: Business key gốc từ customerid
+        tests:
+          - unique
+          - not_null
+
+      - name: fullname
+        description: Tên đầy đủ của khách hàng nếu là Person, rỗng nếu là Store
+
+      - name: businessentityid
+        description: Tham chiếu tới person.businessentityid (nếu có)
+
+      - name: storebusinessentityid
+        description: Tham chiếu tới store.businessentityid (nếu có)
+
+      - name: storename
+        description: Tên cửa hàng (nếu là khách hàng Store)
+
+
+  - name: dim_credit_card
+    description: Dimension thẻ tín dụng (giữ PAN nguyên bản; hạn chế quyền SELECT trực tiếp).
+    columns:
+      - name: credit_card_id_WID
+        tests: [not_null, unique]
+
+      - name: INTEGRATION_ID
+        tests: [not_null, unique]
+
+      - name: cardtype
+        description: Loại thẻ theo nguồn (Visa/Mastercard/…)
+        tests: [not_null]
+
+        
+  - name: dim_order_status
+    columns:
+      - name: order_status_id_WID
+        description: Surrogate key for order status
+        tests: [not_null, unique]
+      - name: INTEGRATION_ID
+        description: Numeric status code from SalesOrderHeader.status
+        tests:
+          - not_null
+          - unique
+      - name: order_status_name
+        description: Human-readable status label
+        tests: [not_null]
+
+
+
+
+# ========================Fact==========================
+  - name: fact_sales_order
+    description: Grain = 1 row / (order_id)
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: [order_id_WID]   # hoặc [order_id_WID, line_number_WID] nếu grain theo dòng
+    columns:
+      - name: order_id_WID
+        tests: [not_null, unique]
+
+      - name: INTEGRATION_ID
+        tests: [not_null]
+
+      - name: customer_id_WID
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_id_WID
+
+      - name: order_status_id_WID
+        tests:
+          - relationships:
+              to: ref('dim_order_status')
+              field: order_status_id_WID
+
+      - name: order_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: total_due
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "total_due >= 0"
