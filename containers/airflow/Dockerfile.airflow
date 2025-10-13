@@ -2,14 +2,24 @@
 FROM apache/airflow:2.10.3-python3.11
 
 USER root
-# cài git để dbt deps kiểu git URL hoạt động
-RUN apt-get update && apt-get install -y --no-install-recommends git \
+
+# Cài git + dependencies cho Scrapy
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    gcc \
+    g++ \
+    libxml2-dev \
+    libxslt1-dev \
+    zlib1g-dev \
+    libffi-dev \
+    libssl-dev \
  && rm -rf /var/lib/apt/lists/*
 
-# (khuyên dùng) cài luôn requirements để khỏi pip install lúc start
+# Cài requirements (bao gồm cả scrapy và boto3)
 COPY requirements.txt /requirements.txt
 RUN python -m pip install --no-cache-dir -r /requirements.txt
 
-# đảm bảo dbt trong PATH của user airflow
+# Đảm bảo dbt trong PATH của user airflow
 ENV PATH="/home/airflow/.local/bin:${PATH}"
+
 USER airflow

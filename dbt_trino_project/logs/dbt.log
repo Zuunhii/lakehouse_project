@@ -1,0 +1,1024 @@
+[0m16:13:51.124786 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe65fe03550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe65fc5ee90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe65fe033d0>]}
+
+
+============================== 16:13:51.155781 | 0abf1cda-14dd-4c0e-a3b2-e829c87568d5 ==============================
+[0m16:13:51.155781 [info ] [MainThread]: Running with dbt=1.8.7
+[0m16:13:51.156675 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'fail_fast': 'False', 'log_path': '/opt/airflow/dbt/logs', 'debug': 'False', 'profiles_dir': '/opt/airflow/dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt docs serve --host 0.0.0.0 --port 8088 --no-browser', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m16:13:51.645175 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '0abf1cda-14dd-4c0e-a3b2-e829c87568d5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe65fe02750>]}
+[0m16:13:51.752705 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '0abf1cda-14dd-4c0e-a3b2-e829c87568d5', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fe65fb06650>]}
+[0m10:33:26.235964 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f015d6dc690>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f015d6cb6d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f015d6cb890>]}
+
+
+============================== 10:33:26.246629 | 89bf7ff3-c227-4476-96b1-44c93f24189b ==============================
+[0m10:33:26.246629 [info ] [MainThread]: Running with dbt=1.8.7
+[0m10:33:26.247464 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': '/opt/airflow/dbt/logs', 'fail_fast': 'False', 'profiles_dir': '/opt/airflow/dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt docs serve --port 8088', 'static_parser': 'True', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m10:33:26.787572 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '89bf7ff3-c227-4476-96b1-44c93f24189b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f015d757850>]}
+[0m10:33:26.896135 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '89bf7ff3-c227-4476-96b1-44c93f24189b', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f015f44bb10>]}
+[0m10:34:43.053620 [error] [MainThread]: Encountered an error:
+
+[0m10:34:43.059802 [error] [MainThread]: Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/requires.py", line 138, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/requires.py", line 101, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/requires.py", line 218, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/requires.py", line 247, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/requires.py", line 294, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/main.py", line 303, in docs_serve
+    results = task.run()
+              ^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/task/docs/serve.py", line 29, in run
+    httpd.serve_forever()
+  File "/usr/local/lib/python3.11/socketserver.py", line 233, in serve_forever
+    ready = selector.select(poll_interval)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+[0m10:34:43.062544 [debug] [MainThread]: Resource report: {"command_name": "serve", "command_wall_clock_time": 81.018364, "process_user_time": 2.678687, "process_kernel_time": 0.776431, "process_mem_max_rss": "109324", "process_in_blocks": "119624", "process_out_blocks": "2976", "command_success": false}
+[0m10:34:43.064030 [debug] [MainThread]: Command `dbt docs serve` failed at 10:34:43.063855 after 81.02 seconds
+[0m10:34:43.064894 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f01617fb110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f015d757a10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f015d517590>]}
+[0m10:34:43.065577 [debug] [MainThread]: Flushing usage events
+[0m10:36:11.878205 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7db06f450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7db06e090>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7db06fed0>]}
+
+
+============================== 10:36:11.887064 | 975152c2-463c-446d-83de-74be40f2430a ==============================
+[0m10:36:11.887064 [info ] [MainThread]: Running with dbt=1.8.7
+[0m10:36:11.887979 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/opt/airflow/dbt', 'debug': 'False', 'version_check': 'True', 'log_path': '/opt/airflow/dbt/logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'invocation_command': 'dbt docs generate', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m10:36:12.205004 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '975152c2-463c-446d-83de-74be40f2430a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7db02b7d0>]}
+[0m10:36:12.312870 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '975152c2-463c-446d-83de-74be40f2430a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7dce3f950>]}
+[0m10:36:12.313915 [info ] [MainThread]: Registered adapter: trino=1.8.0
+[0m10:36:12.464110 [debug] [MainThread]: checksum: 4af21dafb485259c48497ac86b711ddb1982f3d0f1c0ca4e09356de488b753c0, vars: {}, profile: , target: , version: 1.8.7
+[0m10:36:12.621611 [info ] [MainThread]: Unable to do partial parsing because config vars, config profile, or config target have changed
+[0m10:36:12.622402 [debug] [MainThread]: previous checksum: 4af21dafb485259c48497ac86b711ddb1982f3d0f1c0ca4e09356de488b753c0, current checksum: b72588a61004764de5b9a5a46159da2d5d1870e817a9a65ee379ab1be9083c25
+[0m10:36:12.623031 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '975152c2-463c-446d-83de-74be40f2430a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7dc4a2550>]}
+[0m10:36:14.719699 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `tests` config has been renamed to `data_tests`. Please see
+https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax for more
+information.
+[0m10:36:14.720561 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '975152c2-463c-446d-83de-74be40f2430a', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7dacd4c90>]}
+[0m10:36:14.752822 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'fact_sales_order' in the 'models' section of file 'models/marts/schema.yml'
+[0m10:36:15.213901 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.not_null_fact_sales_order_order_id_WID.d3c869bc39' (models/marts/schema.yml) depends on a node named 'fact_sales_order' in package '' which was not found
+[0m10:36:15.214783 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.unique_fact_sales_order_order_id_WID.d31a1fd111' (models/marts/schema.yml) depends on a node named 'fact_sales_order' in package '' which was not found
+[0m10:36:15.215648 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.not_null_fact_sales_order_INTEGRATION_ID.f85856db36' (models/marts/schema.yml) depends on a node named 'fact_sales_order' in package '' which was not found
+[0m10:36:15.216420 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.not_null_fact_sales_order_customer_id_WID.656829fb57' (models/marts/schema.yml) depends on a node named 'fact_sales_order' in package '' which was not found
+[0m10:36:15.217076 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.relationships_fact_sales_order_customer_id_WID__customer_id_WID__ref_dim_customer_.5cd67266c1' (models/marts/schema.yml) depends on a node named 'fact_sales_order' in package '' which was not found
+[0m10:36:15.217768 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.relationships_fact_sales_order_order_status_id_WID__order_status_id_WID__ref_dim_order_status_.231779f8eb' (models/marts/schema.yml) depends on a node named 'fact_sales_order' in package '' which was not found
+[0m10:36:15.218374 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.not_null_fact_sales_order_order_date_key.7c50f7e4c8' (models/marts/schema.yml) depends on a node named 'fact_sales_order' in package '' which was not found
+[0m10:36:15.218984 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.relationships_fact_sales_order_order_date_key__date_key__ref_dim_date_.ecc166e551' (models/marts/schema.yml) depends on a node named 'dim_date' in package '' which was not found
+[0m10:36:15.219572 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.relationships_fact_sales_order_order_date_key__date_key__ref_dim_date_.ecc166e551' (models/marts/schema.yml) depends on a node named 'fact_sales_order' in package '' which was not found
+[0m10:36:15.220137 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.dbt_utils_expression_is_true_fact_sales_order_total_due__total_due_0.ef0e70dc5d' (models/marts/schema.yml) depends on a node named 'fact_sales_order' in package '' which was not found
+[0m10:36:15.220785 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.dbt_trino_project.dbt_utils_unique_combination_of_columns_fact_sales_order_order_id_WID.b54d2dcd2a' (models/marts/schema.yml) depends on a node named 'fact_sales_order' in package '' which was not found
+[0m10:36:15.358586 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+- models.dbt_trino_project.intermediate
+- models.dbt_trino_project.staging
+[0m10:36:15.376982 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '975152c2-463c-446d-83de-74be40f2430a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7da904590>]}
+[0m10:36:15.397632 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '975152c2-463c-446d-83de-74be40f2430a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7da6affd0>]}
+[0m10:36:15.398461 [info ] [MainThread]: Found 6 models, 24 data tests, 15 sources, 564 macros
+[0m10:36:15.399052 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '975152c2-463c-446d-83de-74be40f2430a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7da816c50>]}
+[0m10:36:15.403628 [info ] [MainThread]: 
+[0m10:36:15.404620 [debug] [MainThread]: Acquiring new trino connection 'master'
+[0m10:36:15.412333 [debug] [ThreadPool]: Acquiring new trino connection 'list_iceberg_gold'
+[0m10:36:15.540816 [debug] [ThreadPool]: Using trino connection "list_iceberg_gold"
+[0m10:36:15.541541 [debug] [ThreadPool]: On list_iceberg_gold: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_trino_project", "target_name": "dev", "connection_name": "list_iceberg_gold"} */
+select
+      t.table_catalog as database,
+      t.table_name as name,
+      t.table_schema as schema,
+      case when mv.name is not null then 'materialized_view'
+           when t.table_type = 'BASE TABLE' then 'table'
+           when t.table_type = 'VIEW' then 'view'
+           else t.table_type
+      end as table_type
+    from "iceberg".INFORMATION_SCHEMA.tables t
+    left join (
+            select * from system.metadata.materialized_views
+            where catalog_name = 'iceberg'
+              and schema_name = 'gold') mv
+          on mv.catalog_name = t.table_catalog and mv.schema_name = t.table_schema and mv.name = t.table_name
+    where t.table_schema = 'gold'
+[0m10:36:15.542097 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:36:18.546863 [debug] [ThreadPool]: SQL status: SUCCESS in 3.005 seconds
+[0m10:36:18.549684 [debug] [ThreadPool]: On list_iceberg_gold: ROLLBACK
+[0m10:36:18.550306 [debug] [ThreadPool]: On list_iceberg_gold: Close
+[0m10:36:18.554254 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '975152c2-463c-446d-83de-74be40f2430a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7da916950>]}
+[0m10:36:18.555351 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m10:36:18.556183 [info ] [MainThread]: 
+[0m10:36:18.582362 [debug] [Thread-1 (]: Began running node model.dbt_trino_project.dim_address
+[0m10:36:18.584001 [debug] [Thread-2 (]: Began running node model.dbt_trino_project.dim_credit_card
+[0m10:36:18.586089 [debug] [Thread-3 (]: Began running node model.dbt_trino_project.dim_customer
+[0m10:36:18.587384 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_iceberg_gold, now model.dbt_trino_project.dim_address)
+[0m10:36:18.588223 [debug] [Thread-4 (]: Began running node model.dbt_trino_project.dim_order_status
+[0m10:36:18.589812 [debug] [Thread-2 (]: Acquiring new trino connection 'model.dbt_trino_project.dim_credit_card'
+[0m10:36:18.591264 [debug] [Thread-3 (]: Acquiring new trino connection 'model.dbt_trino_project.dim_customer'
+[0m10:36:18.592443 [debug] [Thread-1 (]: Began compiling node model.dbt_trino_project.dim_address
+[0m10:36:18.593689 [debug] [Thread-4 (]: Acquiring new trino connection 'model.dbt_trino_project.dim_order_status'
+[0m10:36:18.594779 [debug] [Thread-2 (]: Began compiling node model.dbt_trino_project.dim_credit_card
+[0m10:36:18.595620 [debug] [Thread-3 (]: Began compiling node model.dbt_trino_project.dim_customer
+[0m10:36:18.604054 [debug] [Thread-1 (]: Writing injected SQL for node "model.dbt_trino_project.dim_address"
+[0m10:36:18.605052 [debug] [Thread-4 (]: Began compiling node model.dbt_trino_project.dim_order_status
+[0m10:36:18.612232 [debug] [Thread-2 (]: Writing injected SQL for node "model.dbt_trino_project.dim_credit_card"
+[0m10:36:18.620554 [debug] [Thread-3 (]: Writing injected SQL for node "model.dbt_trino_project.dim_customer"
+[0m10:36:18.627840 [debug] [Thread-4 (]: Writing injected SQL for node "model.dbt_trino_project.dim_order_status"
+[0m10:36:18.629418 [debug] [Thread-1 (]: Began executing node model.dbt_trino_project.dim_address
+[0m10:36:18.632313 [debug] [Thread-1 (]: Finished running node model.dbt_trino_project.dim_address
+[0m10:36:18.633736 [debug] [Thread-3 (]: Began executing node model.dbt_trino_project.dim_customer
+[0m10:36:18.634601 [debug] [Thread-1 (]: Began running node model.dbt_trino_project.dim_product
+[0m10:36:18.635524 [debug] [Thread-2 (]: Began executing node model.dbt_trino_project.dim_credit_card
+[0m10:36:18.637281 [debug] [Thread-3 (]: Finished running node model.dbt_trino_project.dim_customer
+[0m10:36:18.638157 [debug] [Thread-4 (]: Began executing node model.dbt_trino_project.dim_order_status
+[0m10:36:18.638885 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.dbt_trino_project.dim_address, now model.dbt_trino_project.dim_product)
+[0m10:36:18.640493 [debug] [Thread-2 (]: Finished running node model.dbt_trino_project.dim_credit_card
+[0m10:36:18.641546 [debug] [Thread-3 (]: Began running node model.dbt_trino_project.fact_sales
+[0m10:36:18.643654 [debug] [Thread-4 (]: Finished running node model.dbt_trino_project.dim_order_status
+[0m10:36:18.644477 [debug] [Thread-1 (]: Began compiling node model.dbt_trino_project.dim_product
+[0m10:36:18.645430 [debug] [Thread-2 (]: Began running node test.dbt_trino_project.not_null_dim_address_INTEGRATION_ID.d79fb1e563
+[0m10:36:18.646486 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.dbt_trino_project.dim_customer, now model.dbt_trino_project.fact_sales)
+[0m10:36:18.647681 [debug] [Thread-4 (]: Began running node test.dbt_trino_project.not_null_dim_address_address_id_WID.3519524d3f
+[0m10:36:18.655628 [debug] [Thread-1 (]: Writing injected SQL for node "model.dbt_trino_project.dim_product"
+[0m10:36:18.656732 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly model.dbt_trino_project.dim_credit_card, now test.dbt_trino_project.not_null_dim_address_INTEGRATION_ID.d79fb1e563)
+[0m10:36:18.657702 [debug] [Thread-3 (]: Began compiling node model.dbt_trino_project.fact_sales
+[0m10:36:18.658715 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly model.dbt_trino_project.dim_order_status, now test.dbt_trino_project.not_null_dim_address_address_id_WID.3519524d3f)
+[0m10:36:18.659936 [debug] [Thread-2 (]: Began compiling node test.dbt_trino_project.not_null_dim_address_INTEGRATION_ID.d79fb1e563
+[0m10:36:18.667940 [debug] [Thread-1 (]: Began executing node model.dbt_trino_project.dim_product
+[0m10:36:18.674340 [debug] [Thread-4 (]: Began compiling node test.dbt_trino_project.not_null_dim_address_address_id_WID.3519524d3f
+[0m10:36:18.768616 [debug] [Thread-3 (]: Writing injected SQL for node "model.dbt_trino_project.fact_sales"
+[0m10:36:18.779766 [debug] [Thread-2 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_address_INTEGRATION_ID.d79fb1e563"
+[0m10:36:18.781090 [debug] [Thread-1 (]: Finished running node model.dbt_trino_project.dim_product
+[0m10:36:18.787820 [debug] [Thread-4 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_address_address_id_WID.3519524d3f"
+[0m10:36:18.789533 [debug] [Thread-1 (]: Began running node test.dbt_trino_project.not_null_dim_address_addressline1.2b8e64b1d8
+[0m10:36:18.790770 [debug] [Thread-2 (]: Began executing node test.dbt_trino_project.not_null_dim_address_INTEGRATION_ID.d79fb1e563
+[0m10:36:18.791492 [debug] [Thread-3 (]: Began executing node model.dbt_trino_project.fact_sales
+[0m10:36:18.792879 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.dbt_trino_project.dim_product, now test.dbt_trino_project.not_null_dim_address_addressline1.2b8e64b1d8)
+[0m10:36:18.794130 [debug] [Thread-2 (]: Finished running node test.dbt_trino_project.not_null_dim_address_INTEGRATION_ID.d79fb1e563
+[0m10:36:18.794666 [debug] [Thread-4 (]: Began executing node test.dbt_trino_project.not_null_dim_address_address_id_WID.3519524d3f
+[0m10:36:18.796089 [debug] [Thread-3 (]: Finished running node model.dbt_trino_project.fact_sales
+[0m10:36:18.796776 [debug] [Thread-1 (]: Began compiling node test.dbt_trino_project.not_null_dim_address_addressline1.2b8e64b1d8
+[0m10:36:18.797598 [debug] [Thread-2 (]: Began running node test.dbt_trino_project.unique_dim_address_INTEGRATION_ID.ab0b1bd172
+[0m10:36:18.798826 [debug] [Thread-4 (]: Finished running node test.dbt_trino_project.not_null_dim_address_address_id_WID.3519524d3f
+[0m10:36:18.799659 [debug] [Thread-3 (]: Began running node test.dbt_trino_project.unique_dim_address_address_id_WID.f1f7f1c978
+[0m10:36:18.807109 [debug] [Thread-1 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_address_addressline1.2b8e64b1d8"
+[0m10:36:18.808156 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_address_INTEGRATION_ID.d79fb1e563, now test.dbt_trino_project.unique_dim_address_INTEGRATION_ID.ab0b1bd172)
+[0m10:36:18.809109 [debug] [Thread-4 (]: Began running node test.dbt_trino_project.not_null_dim_customer_INTEGRATION_ID.6293aab95a
+[0m10:36:18.810264 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly model.dbt_trino_project.fact_sales, now test.dbt_trino_project.unique_dim_address_address_id_WID.f1f7f1c978)
+[0m10:36:18.811258 [debug] [Thread-2 (]: Began compiling node test.dbt_trino_project.unique_dim_address_INTEGRATION_ID.ab0b1bd172
+[0m10:36:18.812228 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_address_address_id_WID.3519524d3f, now test.dbt_trino_project.not_null_dim_customer_INTEGRATION_ID.6293aab95a)
+[0m10:36:18.813107 [debug] [Thread-1 (]: Began executing node test.dbt_trino_project.not_null_dim_address_addressline1.2b8e64b1d8
+[0m10:36:18.813916 [debug] [Thread-3 (]: Began compiling node test.dbt_trino_project.unique_dim_address_address_id_WID.f1f7f1c978
+[0m10:36:18.825743 [debug] [Thread-2 (]: Writing injected SQL for node "test.dbt_trino_project.unique_dim_address_INTEGRATION_ID.ab0b1bd172"
+[0m10:36:18.826755 [debug] [Thread-4 (]: Began compiling node test.dbt_trino_project.not_null_dim_customer_INTEGRATION_ID.6293aab95a
+[0m10:36:18.828107 [debug] [Thread-1 (]: Finished running node test.dbt_trino_project.not_null_dim_address_addressline1.2b8e64b1d8
+[0m10:36:18.836498 [debug] [Thread-3 (]: Writing injected SQL for node "test.dbt_trino_project.unique_dim_address_address_id_WID.f1f7f1c978"
+[0m10:36:18.844464 [debug] [Thread-4 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_customer_INTEGRATION_ID.6293aab95a"
+[0m10:36:18.845558 [debug] [Thread-2 (]: Began executing node test.dbt_trino_project.unique_dim_address_INTEGRATION_ID.ab0b1bd172
+[0m10:36:18.846379 [debug] [Thread-1 (]: Began running node test.dbt_trino_project.not_null_dim_customer_customer_id_WID.e98d1f6800
+[0m10:36:18.848751 [debug] [Thread-2 (]: Finished running node test.dbt_trino_project.unique_dim_address_INTEGRATION_ID.ab0b1bd172
+[0m10:36:18.849740 [debug] [Thread-3 (]: Began executing node test.dbt_trino_project.unique_dim_address_address_id_WID.f1f7f1c978
+[0m10:36:18.850631 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_address_addressline1.2b8e64b1d8, now test.dbt_trino_project.not_null_dim_customer_customer_id_WID.e98d1f6800)
+[0m10:36:18.851407 [debug] [Thread-4 (]: Began executing node test.dbt_trino_project.not_null_dim_customer_INTEGRATION_ID.6293aab95a
+[0m10:36:18.852141 [debug] [Thread-2 (]: Began running node test.dbt_trino_project.unique_dim_customer_INTEGRATION_ID.7d72774165
+[0m10:36:18.853583 [debug] [Thread-3 (]: Finished running node test.dbt_trino_project.unique_dim_address_address_id_WID.f1f7f1c978
+[0m10:36:18.854328 [debug] [Thread-1 (]: Began compiling node test.dbt_trino_project.not_null_dim_customer_customer_id_WID.e98d1f6800
+[0m10:36:18.855573 [debug] [Thread-4 (]: Finished running node test.dbt_trino_project.not_null_dim_customer_INTEGRATION_ID.6293aab95a
+[0m10:36:18.856676 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.unique_dim_address_INTEGRATION_ID.ab0b1bd172, now test.dbt_trino_project.unique_dim_customer_INTEGRATION_ID.7d72774165)
+[0m10:36:18.857878 [debug] [Thread-3 (]: Began running node test.dbt_trino_project.unique_dim_customer_customer_id_WID.4fee480987
+[0m10:36:18.865600 [debug] [Thread-1 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_customer_customer_id_WID.e98d1f6800"
+[0m10:36:18.866496 [debug] [Thread-4 (]: Began running node test.dbt_trino_project.not_null_dim_credit_card_INTEGRATION_ID.e719fd8bfa
+[0m10:36:18.867647 [debug] [Thread-2 (]: Began compiling node test.dbt_trino_project.unique_dim_customer_INTEGRATION_ID.7d72774165
+[0m10:36:18.868937 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.unique_dim_address_address_id_WID.f1f7f1c978, now test.dbt_trino_project.unique_dim_customer_customer_id_WID.4fee480987)
+[0m10:36:18.870329 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_customer_INTEGRATION_ID.6293aab95a, now test.dbt_trino_project.not_null_dim_credit_card_INTEGRATION_ID.e719fd8bfa)
+[0m10:36:18.876878 [debug] [Thread-1 (]: Began executing node test.dbt_trino_project.not_null_dim_customer_customer_id_WID.e98d1f6800
+[0m10:36:18.878978 [debug] [Thread-2 (]: Writing injected SQL for node "test.dbt_trino_project.unique_dim_customer_INTEGRATION_ID.7d72774165"
+[0m10:36:18.879818 [debug] [Thread-3 (]: Began compiling node test.dbt_trino_project.unique_dim_customer_customer_id_WID.4fee480987
+[0m10:36:18.880556 [debug] [Thread-4 (]: Began compiling node test.dbt_trino_project.not_null_dim_credit_card_INTEGRATION_ID.e719fd8bfa
+[0m10:36:18.881812 [debug] [Thread-1 (]: Finished running node test.dbt_trino_project.not_null_dim_customer_customer_id_WID.e98d1f6800
+[0m10:36:18.890953 [debug] [Thread-3 (]: Writing injected SQL for node "test.dbt_trino_project.unique_dim_customer_customer_id_WID.4fee480987"
+[0m10:36:18.899734 [debug] [Thread-2 (]: Began executing node test.dbt_trino_project.unique_dim_customer_INTEGRATION_ID.7d72774165
+[0m10:36:18.909057 [debug] [Thread-4 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_credit_card_INTEGRATION_ID.e719fd8bfa"
+[0m10:36:18.910485 [debug] [Thread-1 (]: Began running node test.dbt_trino_project.not_null_dim_credit_card_cardtype.ee3e3af84d
+[0m10:36:18.912721 [debug] [Thread-2 (]: Finished running node test.dbt_trino_project.unique_dim_customer_INTEGRATION_ID.7d72774165
+[0m10:36:18.914048 [debug] [Thread-3 (]: Began executing node test.dbt_trino_project.unique_dim_customer_customer_id_WID.4fee480987
+[0m10:36:18.915212 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_customer_customer_id_WID.e98d1f6800, now test.dbt_trino_project.not_null_dim_credit_card_cardtype.ee3e3af84d)
+[0m10:36:18.916196 [debug] [Thread-4 (]: Began executing node test.dbt_trino_project.not_null_dim_credit_card_INTEGRATION_ID.e719fd8bfa
+[0m10:36:18.917215 [debug] [Thread-2 (]: Began running node test.dbt_trino_project.not_null_dim_credit_card_credit_card_id_WID.772c616f4b
+[0m10:36:18.919163 [debug] [Thread-3 (]: Finished running node test.dbt_trino_project.unique_dim_customer_customer_id_WID.4fee480987
+[0m10:36:18.920239 [debug] [Thread-1 (]: Began compiling node test.dbt_trino_project.not_null_dim_credit_card_cardtype.ee3e3af84d
+[0m10:36:18.922204 [debug] [Thread-4 (]: Finished running node test.dbt_trino_project.not_null_dim_credit_card_INTEGRATION_ID.e719fd8bfa
+[0m10:36:18.923638 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.unique_dim_customer_INTEGRATION_ID.7d72774165, now test.dbt_trino_project.not_null_dim_credit_card_credit_card_id_WID.772c616f4b)
+[0m10:36:18.924925 [debug] [Thread-3 (]: Began running node test.dbt_trino_project.unique_dim_credit_card_INTEGRATION_ID.0d06642d2d
+[0m10:36:18.933455 [debug] [Thread-1 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_credit_card_cardtype.ee3e3af84d"
+[0m10:36:18.934749 [debug] [Thread-4 (]: Began running node test.dbt_trino_project.unique_dim_credit_card_credit_card_id_WID.4ef5f3742b
+[0m10:36:18.935842 [debug] [Thread-2 (]: Began compiling node test.dbt_trino_project.not_null_dim_credit_card_credit_card_id_WID.772c616f4b
+[0m10:36:18.936797 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.unique_dim_customer_customer_id_WID.4fee480987, now test.dbt_trino_project.unique_dim_credit_card_INTEGRATION_ID.0d06642d2d)
+[0m10:36:18.937726 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_credit_card_INTEGRATION_ID.e719fd8bfa, now test.dbt_trino_project.unique_dim_credit_card_credit_card_id_WID.4ef5f3742b)
+[0m10:36:18.943946 [debug] [Thread-1 (]: Began executing node test.dbt_trino_project.not_null_dim_credit_card_cardtype.ee3e3af84d
+[0m10:36:18.946200 [debug] [Thread-2 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_credit_card_credit_card_id_WID.772c616f4b"
+[0m10:36:18.946904 [debug] [Thread-3 (]: Began compiling node test.dbt_trino_project.unique_dim_credit_card_INTEGRATION_ID.0d06642d2d
+[0m10:36:18.947700 [debug] [Thread-4 (]: Began compiling node test.dbt_trino_project.unique_dim_credit_card_credit_card_id_WID.4ef5f3742b
+[0m10:36:18.948912 [debug] [Thread-1 (]: Finished running node test.dbt_trino_project.not_null_dim_credit_card_cardtype.ee3e3af84d
+[0m10:36:18.956412 [debug] [Thread-3 (]: Writing injected SQL for node "test.dbt_trino_project.unique_dim_credit_card_INTEGRATION_ID.0d06642d2d"
+[0m10:36:18.962697 [debug] [Thread-2 (]: Began executing node test.dbt_trino_project.not_null_dim_credit_card_credit_card_id_WID.772c616f4b
+[0m10:36:18.964367 [debug] [Thread-4 (]: Writing injected SQL for node "test.dbt_trino_project.unique_dim_credit_card_credit_card_id_WID.4ef5f3742b"
+[0m10:36:18.965583 [debug] [Thread-1 (]: Began running node test.dbt_trino_project.not_null_dim_order_status_INTEGRATION_ID.7e1a851fd0
+[0m10:36:18.967322 [debug] [Thread-2 (]: Finished running node test.dbt_trino_project.not_null_dim_credit_card_credit_card_id_WID.772c616f4b
+[0m10:36:18.968491 [debug] [Thread-3 (]: Began executing node test.dbt_trino_project.unique_dim_credit_card_INTEGRATION_ID.0d06642d2d
+[0m10:36:18.969305 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_credit_card_cardtype.ee3e3af84d, now test.dbt_trino_project.not_null_dim_order_status_INTEGRATION_ID.7e1a851fd0)
+[0m10:36:18.970282 [debug] [Thread-4 (]: Began executing node test.dbt_trino_project.unique_dim_credit_card_credit_card_id_WID.4ef5f3742b
+[0m10:36:18.971192 [debug] [Thread-2 (]: Began running node test.dbt_trino_project.not_null_dim_order_status_order_status_id_WID.b790d4b308
+[0m10:36:18.972721 [debug] [Thread-3 (]: Finished running node test.dbt_trino_project.unique_dim_credit_card_INTEGRATION_ID.0d06642d2d
+[0m10:36:18.973494 [debug] [Thread-1 (]: Began compiling node test.dbt_trino_project.not_null_dim_order_status_INTEGRATION_ID.7e1a851fd0
+[0m10:36:18.975149 [debug] [Thread-4 (]: Finished running node test.dbt_trino_project.unique_dim_credit_card_credit_card_id_WID.4ef5f3742b
+[0m10:36:18.975971 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_credit_card_credit_card_id_WID.772c616f4b, now test.dbt_trino_project.not_null_dim_order_status_order_status_id_WID.b790d4b308)
+[0m10:36:18.976801 [debug] [Thread-3 (]: Began running node test.dbt_trino_project.not_null_dim_order_status_order_status_name.62835c73b1
+[0m10:36:18.983541 [debug] [Thread-1 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_order_status_INTEGRATION_ID.7e1a851fd0"
+[0m10:36:18.984456 [debug] [Thread-4 (]: Began running node test.dbt_trino_project.unique_dim_order_status_INTEGRATION_ID.69614b9477
+[0m10:36:18.985333 [debug] [Thread-2 (]: Began compiling node test.dbt_trino_project.not_null_dim_order_status_order_status_id_WID.b790d4b308
+[0m10:36:18.986234 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.unique_dim_credit_card_INTEGRATION_ID.0d06642d2d, now test.dbt_trino_project.not_null_dim_order_status_order_status_name.62835c73b1)
+[0m10:36:18.987393 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.unique_dim_credit_card_credit_card_id_WID.4ef5f3742b, now test.dbt_trino_project.unique_dim_order_status_INTEGRATION_ID.69614b9477)
+[0m10:36:18.994247 [debug] [Thread-2 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_order_status_order_status_id_WID.b790d4b308"
+[0m10:36:18.994965 [debug] [Thread-1 (]: Began executing node test.dbt_trino_project.not_null_dim_order_status_INTEGRATION_ID.7e1a851fd0
+[0m10:36:18.995540 [debug] [Thread-3 (]: Began compiling node test.dbt_trino_project.not_null_dim_order_status_order_status_name.62835c73b1
+[0m10:36:18.996275 [debug] [Thread-4 (]: Began compiling node test.dbt_trino_project.unique_dim_order_status_INTEGRATION_ID.69614b9477
+[0m10:36:18.997744 [debug] [Thread-1 (]: Finished running node test.dbt_trino_project.not_null_dim_order_status_INTEGRATION_ID.7e1a851fd0
+[0m10:36:19.004156 [debug] [Thread-2 (]: Began executing node test.dbt_trino_project.not_null_dim_order_status_order_status_id_WID.b790d4b308
+[0m10:36:19.005205 [debug] [Thread-3 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_order_status_order_status_name.62835c73b1"
+[0m10:36:19.012255 [debug] [Thread-4 (]: Writing injected SQL for node "test.dbt_trino_project.unique_dim_order_status_INTEGRATION_ID.69614b9477"
+[0m10:36:19.013229 [debug] [Thread-1 (]: Began running node test.dbt_trino_project.unique_dim_order_status_order_status_id_WID.bf35647882
+[0m10:36:19.014492 [debug] [Thread-2 (]: Finished running node test.dbt_trino_project.not_null_dim_order_status_order_status_id_WID.b790d4b308
+[0m10:36:19.016186 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_order_status_INTEGRATION_ID.7e1a851fd0, now test.dbt_trino_project.unique_dim_order_status_order_status_id_WID.bf35647882)
+[0m10:36:19.016962 [debug] [Thread-4 (]: Began executing node test.dbt_trino_project.unique_dim_order_status_INTEGRATION_ID.69614b9477
+[0m10:36:19.017724 [debug] [Thread-3 (]: Began executing node test.dbt_trino_project.not_null_dim_order_status_order_status_name.62835c73b1
+[0m10:36:19.018436 [debug] [Thread-2 (]: Began running node test.dbt_trino_project.not_null_dim_product_INTEGRATION_ID.a68b21f43d
+[0m10:36:19.019302 [debug] [Thread-1 (]: Began compiling node test.dbt_trino_project.unique_dim_order_status_order_status_id_WID.bf35647882
+[0m10:36:19.020376 [debug] [Thread-4 (]: Finished running node test.dbt_trino_project.unique_dim_order_status_INTEGRATION_ID.69614b9477
+[0m10:36:19.021492 [debug] [Thread-3 (]: Finished running node test.dbt_trino_project.not_null_dim_order_status_order_status_name.62835c73b1
+[0m10:36:19.022554 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_order_status_order_status_id_WID.b790d4b308, now test.dbt_trino_project.not_null_dim_product_INTEGRATION_ID.a68b21f43d)
+[0m10:36:19.033154 [debug] [Thread-1 (]: Writing injected SQL for node "test.dbt_trino_project.unique_dim_order_status_order_status_id_WID.bf35647882"
+[0m10:36:19.033935 [debug] [Thread-4 (]: Began running node test.dbt_trino_project.not_null_dim_product_product_id_WID.fcba11d656
+[0m10:36:19.034873 [debug] [Thread-3 (]: Began running node test.dbt_trino_project.not_null_dim_product_product_name.1b672622d5
+[0m10:36:19.035754 [debug] [Thread-2 (]: Began compiling node test.dbt_trino_project.not_null_dim_product_INTEGRATION_ID.a68b21f43d
+[0m10:36:19.036713 [debug] [Thread-4 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.unique_dim_order_status_INTEGRATION_ID.69614b9477, now test.dbt_trino_project.not_null_dim_product_product_id_WID.fcba11d656)
+[0m10:36:19.037501 [debug] [Thread-3 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_order_status_order_status_name.62835c73b1, now test.dbt_trino_project.not_null_dim_product_product_name.1b672622d5)
+[0m10:36:19.038087 [debug] [Thread-1 (]: Began executing node test.dbt_trino_project.unique_dim_order_status_order_status_id_WID.bf35647882
+[0m10:36:19.045463 [debug] [Thread-2 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_product_INTEGRATION_ID.a68b21f43d"
+[0m10:36:19.046431 [debug] [Thread-4 (]: Began compiling node test.dbt_trino_project.not_null_dim_product_product_id_WID.fcba11d656
+[0m10:36:19.047232 [debug] [Thread-3 (]: Began compiling node test.dbt_trino_project.not_null_dim_product_product_name.1b672622d5
+[0m10:36:19.048496 [debug] [Thread-1 (]: Finished running node test.dbt_trino_project.unique_dim_order_status_order_status_id_WID.bf35647882
+[0m10:36:19.057450 [debug] [Thread-4 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_product_product_id_WID.fcba11d656"
+[0m10:36:19.063945 [debug] [Thread-2 (]: Began executing node test.dbt_trino_project.not_null_dim_product_INTEGRATION_ID.a68b21f43d
+[0m10:36:19.065716 [debug] [Thread-3 (]: Writing injected SQL for node "test.dbt_trino_project.not_null_dim_product_product_name.1b672622d5"
+[0m10:36:19.066577 [debug] [Thread-1 (]: Began running node test.dbt_trino_project.unique_dim_product_INTEGRATION_ID.94600187a5
+[0m10:36:19.068005 [debug] [Thread-2 (]: Finished running node test.dbt_trino_project.not_null_dim_product_INTEGRATION_ID.a68b21f43d
+[0m10:36:19.069217 [debug] [Thread-4 (]: Began executing node test.dbt_trino_project.not_null_dim_product_product_id_WID.fcba11d656
+[0m10:36:19.070023 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.unique_dim_order_status_order_status_id_WID.bf35647882, now test.dbt_trino_project.unique_dim_product_INTEGRATION_ID.94600187a5)
+[0m10:36:19.070714 [debug] [Thread-3 (]: Began executing node test.dbt_trino_project.not_null_dim_product_product_name.1b672622d5
+[0m10:36:19.071562 [debug] [Thread-2 (]: Began running node test.dbt_trino_project.unique_dim_product_product_id_WID.4b563d82a6
+[0m10:36:19.072920 [debug] [Thread-4 (]: Finished running node test.dbt_trino_project.not_null_dim_product_product_id_WID.fcba11d656
+[0m10:36:19.073715 [debug] [Thread-1 (]: Began compiling node test.dbt_trino_project.unique_dim_product_INTEGRATION_ID.94600187a5
+[0m10:36:19.075001 [debug] [Thread-3 (]: Finished running node test.dbt_trino_project.not_null_dim_product_product_name.1b672622d5
+[0m10:36:19.075822 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly test.dbt_trino_project.not_null_dim_product_INTEGRATION_ID.a68b21f43d, now test.dbt_trino_project.unique_dim_product_product_id_WID.4b563d82a6)
+[0m10:36:19.082690 [debug] [Thread-1 (]: Writing injected SQL for node "test.dbt_trino_project.unique_dim_product_INTEGRATION_ID.94600187a5"
+[0m10:36:19.083828 [debug] [Thread-2 (]: Began compiling node test.dbt_trino_project.unique_dim_product_product_id_WID.4b563d82a6
+[0m10:36:19.091071 [debug] [Thread-2 (]: Writing injected SQL for node "test.dbt_trino_project.unique_dim_product_product_id_WID.4b563d82a6"
+[0m10:36:19.092057 [debug] [Thread-1 (]: Began executing node test.dbt_trino_project.unique_dim_product_INTEGRATION_ID.94600187a5
+[0m10:36:19.093322 [debug] [Thread-1 (]: Finished running node test.dbt_trino_project.unique_dim_product_INTEGRATION_ID.94600187a5
+[0m10:36:19.094301 [debug] [Thread-2 (]: Began executing node test.dbt_trino_project.unique_dim_product_product_id_WID.4b563d82a6
+[0m10:36:19.095258 [debug] [Thread-2 (]: Finished running node test.dbt_trino_project.unique_dim_product_product_id_WID.4b563d82a6
+[0m10:36:19.097533 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m10:36:19.098045 [debug] [MainThread]: Connection 'test.dbt_trino_project.unique_dim_product_INTEGRATION_ID.94600187a5' was properly closed.
+[0m10:36:19.098503 [debug] [MainThread]: Connection 'test.dbt_trino_project.unique_dim_product_product_id_WID.4b563d82a6' was properly closed.
+[0m10:36:19.099085 [debug] [MainThread]: Connection 'test.dbt_trino_project.not_null_dim_product_product_name.1b672622d5' was properly closed.
+[0m10:36:19.099533 [debug] [MainThread]: Connection 'test.dbt_trino_project.not_null_dim_product_product_id_WID.fcba11d656' was properly closed.
+[0m10:36:19.104922 [debug] [MainThread]: Command end result
+[0m10:36:19.284257 [debug] [MainThread]: Acquiring new trino connection 'generate_catalog'
+[0m10:36:19.284879 [info ] [MainThread]: Building catalog
+[0m10:36:19.293443 [debug] [ThreadPool]: Acquiring new trino connection 'iceberg.information_schema'
+[0m10:36:19.403979 [debug] [ThreadPool]: Using trino connection "iceberg.information_schema"
+[0m10:36:19.405395 [debug] [ThreadPool]: On iceberg.information_schema: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_trino_project", "target_name": "dev", "connection_name": "iceberg.information_schema"} */
+
+    
+        with tables as (
+            select
+        table_catalog as "table_database",
+        table_schema as "table_schema",
+        table_name as "table_name",
+        table_type as "table_type",
+        null as "table_owner"
+    from "iceberg".INFORMATION_SCHEMA.tables
+            where
+        table_schema != 'information_schema'
+        and
+        (
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'dim_order_status'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_salesreason'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_creditcard'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_production_productcategory'
+                    )
+                 or 
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'fact_sales'
+                    )
+                 or 
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'dim_credit_card'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_person_countryregion'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_person_stateprovince'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_salesorderdetail'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_person_person'
+                    )
+                 or 
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'dim_customer'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_salesorderheadersalesreason'
+                    )
+                 or 
+                    (
+                        table_schema = 'bronze'
+                        and table_name = 'silve_person_address'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_store'
+                    )
+                 or 
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'dim_product'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_production_productsubcategory'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_person_address'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_salesorderheader'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_production_product'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_customer'
+                    )
+                 or 
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'dim_address'
+                    )
+                )
+        ),
+        columns as (
+            select
+        table_catalog as "table_database",
+        table_schema as "table_schema",
+        table_name as "table_name",
+        column_name as "column_name",
+        ordinal_position as "column_index",
+        data_type as "column_type",
+        comment as "column_comment"
+    from "iceberg".INFORMATION_SCHEMA.columns
+            where
+        table_schema != 'information_schema'
+        and
+        (
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'dim_order_status'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_salesreason'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_creditcard'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_production_productcategory'
+                    )
+                 or 
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'fact_sales'
+                    )
+                 or 
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'dim_credit_card'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_person_countryregion'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_person_stateprovince'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_salesorderdetail'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_person_person'
+                    )
+                 or 
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'dim_customer'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_salesorderheadersalesreason'
+                    )
+                 or 
+                    (
+                        table_schema = 'bronze'
+                        and table_name = 'silve_person_address'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_store'
+                    )
+                 or 
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'dim_product'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_production_productsubcategory'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_person_address'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_salesorderheader'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_production_product'
+                    )
+                 or 
+                    (
+                        table_schema = 'silver'
+                        and table_name = 'silver_sales_customer'
+                    )
+                 or 
+                    (
+                        table_schema = 'gold'
+                        and table_name = 'dim_address'
+                    )
+                )
+        ),
+        table_comment as (
+            
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'gold'
+                    and table_name = 'dim_order_status'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_sales_salesreason'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_sales_creditcard'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_production_productcategory'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'gold'
+                    and table_name = 'fact_sales'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'gold'
+                    and table_name = 'dim_credit_card'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_person_countryregion'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_person_stateprovince'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_sales_salesorderdetail'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_person_person'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'gold'
+                    and table_name = 'dim_customer'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_sales_salesorderheadersalesreason'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'bronze'
+                    and table_name = 'silve_person_address'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_sales_store'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'gold'
+                    and table_name = 'dim_product'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_production_productsubcategory'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_person_address'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_sales_salesorderheader'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_production_product'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'silver'
+                    and table_name = 'silver_sales_customer'
+                )
+            
+    union all
+    
+    select
+        catalog_name as "table_database",
+        schema_name as "table_schema",
+        table_name as "table_name",
+        comment as "table_comment"
+    from system.metadata.table_comments
+    where
+        catalog_name = 'iceberg'
+        and
+        schema_name != 'information_schema'
+        and
+        
+                (
+                    schema_name = 'gold'
+                    and table_name = 'dim_address'
+                )
+            
+        )
+        select
+            table_database,
+            table_schema,
+            table_name,
+            table_type,
+            table_owner,
+            column_name,
+            column_index,
+            column_type,
+            column_comment,
+            table_comment
+        from tables
+        join columns using ("table_database", "table_schema", "table_name")
+        join table_comment using ("table_database", "table_schema", "table_name")
+        order by "column_index"
+[0m10:36:19.406777 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:36:29.474430 [debug] [ThreadPool]: SQL status: SUCCESS in 10.068 seconds
+[0m10:36:29.498226 [debug] [ThreadPool]: On iceberg.information_schema: Close
+[0m10:36:29.592303 [info ] [MainThread]: Catalog written to /opt/airflow/dbt/target/catalog.json
+[0m10:36:29.594017 [debug] [MainThread]: Resource report: {"command_name": "generate", "command_success": true, "command_wall_clock_time": 17.803247, "process_user_time": 6.215459, "process_kernel_time": 0.520364, "process_mem_max_rss": "130552", "process_in_blocks": "36816", "process_out_blocks": "7568"}
+[0m10:36:29.594942 [debug] [MainThread]: Command `dbt docs generate` succeeded at 10:36:29.594799 after 17.80 seconds
+[0m10:36:29.595464 [debug] [MainThread]: Connection 'generate_catalog' was properly closed.
+[0m10:36:29.595917 [debug] [MainThread]: Connection 'iceberg.information_schema' was properly closed.
+[0m10:36:29.596449 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7dad001d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7dad34e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fc7da7a99d0>]}
+[0m10:36:29.596992 [debug] [MainThread]: Flushing usage events
+[0m10:36:35.524206 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f36e849a590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f36e849a390>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f36e849bfd0>]}
+
+
+============================== 10:36:35.533065 | 42479703-b7d7-4461-851a-dd625e7a1773 ==============================
+[0m10:36:35.533065 [info ] [MainThread]: Running with dbt=1.8.7
+[0m10:36:35.533928 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/opt/airflow/dbt/logs', 'version_check': 'True', 'profiles_dir': '/opt/airflow/dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt docs serve --port 8088', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m10:36:35.848629 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '42479703-b7d7-4461-851a-dd625e7a1773', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f36e82071d0>]}
+[0m10:36:35.955813 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '42479703-b7d7-4461-851a-dd625e7a1773', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f36ea216e10>]}
+[0m10:38:44.238128 [error] [MainThread]: Encountered an error:
+
+[0m10:38:44.241807 [error] [MainThread]: Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/requires.py", line 138, in wrapper
+    result, success = func(*args, **kwargs)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/requires.py", line 101, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/requires.py", line 218, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/requires.py", line 247, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/requires.py", line 294, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/cli/main.py", line 303, in docs_serve
+    results = task.run()
+              ^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/dbt/task/docs/serve.py", line 29, in run
+    httpd.serve_forever()
+  File "/usr/local/lib/python3.11/socketserver.py", line 233, in serve_forever
+    ready = selector.select(poll_interval)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+[0m10:38:44.243577 [debug] [MainThread]: Resource report: {"command_name": "serve", "command_wall_clock_time": 134.30531, "process_user_time": 2.525376, "process_kernel_time": 0.199371, "process_mem_max_rss": "109836", "process_out_blocks": "2968", "command_success": false, "process_in_blocks": "0"}
+[0m10:38:44.244681 [debug] [MainThread]: Command `dbt docs serve` failed at 10:38:44.244521 after 134.31 seconds
+[0m10:38:44.245468 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f36ec5c7110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f36e84a3d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f36e8163590>]}
+[0m10:38:44.246160 [debug] [MainThread]: Flushing usage events
+[0m10:41:40.884415 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24ba1d3890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24ba1d1d50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24ba1d1ed0>]}
+
+
+============================== 10:41:40.892855 | 36bdd240-0df7-4f9f-8e43-b437ae33a596 ==============================
+[0m10:41:40.892855 [info ] [MainThread]: Running with dbt=1.8.7
+[0m10:41:40.893741 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': '/opt/airflow/dbt/logs', 'profiles_dir': '/opt/airflow/dbt', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'None', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt docs serve --host 0.0.0.0 --port 8088', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m10:41:41.203361 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '36bdd240-0df7-4f9f-8e43-b437ae33a596', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24b9f3fe90>]}
+[0m10:41:41.310101 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '36bdd240-0df7-4f9f-8e43-b437ae33a596', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f24b9f8ae90>]}
