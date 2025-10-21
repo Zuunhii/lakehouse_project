@@ -13,14 +13,18 @@ Gold – dữ liệu tổng hợp, phục vụ phân tích và dashboard.
 
 
 ⚙️ Công nghệ sử dụng
-| Thành phần           | Vai trò        | Mô tả                                                                     |
-| -------------------- | -------------- | ------------------------------------------------------------------------- |
-| **MinIO**            | Data Lake      | Object storage tương thích S3, lưu dữ liệu ở các tầng bronze/silver/gold. |
-| **Apache Iceberg**   | Table Format   | Quản lý schema, versioning, ACID transaction trên data lake.              |
-| **Trino**            | Query Engine   | Xử lý truy vấn phân tán, đọc dữ liệu Iceberg trên MinIO.                  |
-| **Airflow**          | Orchestration  | Quản lý và chạy pipeline ETL/ELT.                                         |
-| **DBT (optional)**   | Transformation | Quản lý logic biến đổi dữ liệu SQL trong Silver/Gold.                     |
-| **Python utilities** | Tooling        | Hỗ trợ đọc/ghi file, đăng ký Iceberg schema, và tương tác MinIO.          |
+| Thành phần               | Vai trò            | Mô tả                                                                                                   |
+| ------------------------ | ------------------ | ------------------------------------------------------------------------------------------------------- |
+| **MinIO**                | Data Lake          | Object storage tương thích S3, lưu dữ liệu ở các tầng bronze/silver/gold.                               |
+| **Apache Iceberg**       | Table Format       | Quản lý schema, versioning, partition và ACID transaction trên data lake.                               |
+| **Trino**                | Query Engine       | Xử lý truy vấn SQL phân tán, đọc bảng Iceberg thông qua Hive Metastore và MinIO.                        |
+| **Hive Metastore (HMS)** | Metadata Catalog   | Lưu trữ metadata (schema, partition, snapshot) cho các bảng Iceberg, làm cầu nối giữa Trino và Iceberg. |
+| **Airflow**              | Orchestration      | Điều phối và tự động hóa pipeline ETL/ELT.                                                              |
+| **DBT (optional)**       | Transformation     | Quản lý logic biến đổi dữ liệu SQL ở tầng Silver/Gold, dùng Trino làm engine.                           |
+| **Python utilities**     | Tooling            | Hỗ trợ đọc/ghi file, đăng ký Iceberg schema, chuyển đổi dữ liệu giữa các tầng.                          |
+| **Metabase (optional)**  | BI / Visualization | Kết nối với Trino để trực quan hóa dữ liệu qua dashboard, chart và báo cáo.                             |
+
+
 
 
 📦 Dữ liệu sử dụng: AdventureWorks
