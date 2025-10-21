@@ -29,16 +29,27 @@ Dự án sử dụng AdventureWorks, bộ dữ liệu mẫu nổi tiếng của 
 AdventureWorks chứa dữ liệu đa dạng, phù hợp cho cả kỹ thuật Data Modeling, ETL, và BI:
 
 Production – sản phẩm, danh mục, tồn kho, quy trình sản xuất.
+
 Sales – khách hàng, đơn hàng, thanh toán, thẻ tín dụng.
+
 Person – thông tin nhân viên, địa chỉ, quốc gia, vùng địa lý.
+
 HumanResources – dữ liệu nhân sự, phòng ban, chức vụ.
+
 Purchasing – nhà cung cấp, phiếu mua hàng.
+
 Trong dự án này:
+
 Dữ liệu raw CSV/Parquet được lưu ở tầng Bronze (trên MinIO).
+
 Sau đó được chuẩn hóa và tách quan hệ thành các bảng Silver (Iceberg).
+
 Cuối cùng, dữ liệu được tổng hợp và tính toán KPI ở tầng Gold phục vụ báo cáo.
 
+
+
 Bronze - dữ liệu raw được lưu trữ ở trên MiniO 
+
 <img width="601" height="284" alt="image" src="https://github.com/user-attachments/assets/58dc091d-6309-454e-9527-8a3ff0021076" />
 
 Silver - đăng ký bảng và xử lý, làm sạch dữ liệu 
