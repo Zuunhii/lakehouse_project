@@ -23,23 +23,23 @@ select
   a.addressid as INTEGRATION_ID,
 
   -- Thuộc tính mô tả
-  a.addressline1,
-  a.addressline2,
+  a.addressline1 AS address_line_1,
+  a.addressline2 AS address_line_2,
   a.city,
-  a.postalcode,
+  a.postalcode AS postal_code,
 
   -- State/Province
-  cast(a.stateprovinceid as bigint) as stateprovinceid,
-  sp.stateprovincecode,
-  sp.name as stateprovince_name,
+  cast(a.stateprovinceid as bigint) as state_province_id,
+  sp.stateprovincecode AS state_province_code,
+  sp.name as state_province_name,
 
   -- Country/Region
-  sp.countryregioncode,
+  sp.countryregioncode AS country_region_code,
   cr.name as country_name,
 
   -- Phụ trợ
-  a.spatiallocation,
-  a.rowguid,
+  -- a.spatiallocation,
+  -- a.rowguid,
   a.modifieddate
 
 from stg_address a

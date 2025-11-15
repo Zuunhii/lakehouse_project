@@ -6,6 +6,7 @@ services:
     container_name: TRINO-COORDINATOR
     ports:
       - '8080:8080'
+      - "8443:8443"  # port HTTPS 
     volumes:
       - ./etc:/etc/trino
       - ./run-trino-sql:/run-trino-sql:ro 

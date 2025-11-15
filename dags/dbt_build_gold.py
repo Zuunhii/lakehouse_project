@@ -2,11 +2,12 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 
+
 DBT_DIR = "/opt/airflow/dbt"
 DBT_TARGET = "dev"
 
 with DAG(
-    dag_id="dbt_run_test_selector",
+    dag_id="dbt_build_gold",
     start_date=datetime(2025, 1, 1),
     schedule_interval=None,
     catchup=False,

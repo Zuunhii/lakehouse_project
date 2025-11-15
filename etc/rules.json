@@ -1,0 +1,30 @@
+{
+  "catalogs": [
+    { "user": "data_engineer", "catalog": ".*",      "allow": "all" },
+    { "user": "analyst",       "catalog": "system",  "allow": "read-only" },
+    { "user": "analyst",       "catalog": "iceberg", "allow": "read-only" }
+  ],
+  "schemas": [
+    { "user": "data_engineer", "catalog": ".*",      "schema": ".*",                 "owner": true  },
+
+    { "user": "analyst",       "catalog": "iceberg", "schema": "gold",               "owner": false },
+    { "user": "analyst",       "catalog": "iceberg", "schema": "information_schema", "owner": false },
+    { "user": "analyst",       "catalog": "system",  "schema": "jdbc",               "owner": false }
+  ],
+  "tables": [
+    { "user": "data_engineer", "catalog": ".*",      "schema": ".*",   "table": ".*",
+      "privileges": ["SELECT","INSERT","DELETE","UPDATE","OWNERSHIP"] },
+
+    { "user": "analyst",       "catalog": "system",  "schema": "jdbc",               "table": ".*",
+      "privileges": ["SELECT"] },
+
+    { "user": "analyst",       "catalog": "iceberg", "schema": "information_schema", "table": ".*",
+      "privileges": ["SELECT"] },
+
+    { "user": "analyst",       "catalog": "iceberg", "schema": "gold",               "table": ".*",
+      "privileges": ["SELECT"] },
+
+    { "user": "analyst",       "catalog": ".*",      "schema": ".*",                 "table": ".*",
+      "privileges": [] }
+  ]
+}

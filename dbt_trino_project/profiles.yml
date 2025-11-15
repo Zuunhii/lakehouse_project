@@ -1,48 +1,50 @@
-# profiles.yml
 dbt_trino_project:
   target: dev
   outputs:
     dev:
       type: trino
       host: trino-coordinator
-      port: 8080
-      user: airflow
-      method: none
-      http_scheme: http
+      port: 8443
+      user: data_engineer
+      password: engineer123
+      method: ldap          # ← ĐỔI từ none → ldap
+      http_scheme: https
       catalog: iceberg
-      schema: silver 
+      schema: silver
       threads: 4
 
-    # THÊM CẤU HÌNH CHO TỪNG MÔI TRƯỜNG
     staging:
       type: trino
       host: trino-coordinator
-      port: 8080
-      user: airflow
-      method: none
-      http_scheme: http
+      port: 8443
+      user: data_engineer
+      password: engineer123
+      method: ldap
+      http_scheme: https
       catalog: iceberg
-      schema: bronze # Mặc định cho staging
+      schema: bronze
       threads: 4
-    
+
     intermediate:
       type: trino
       host: trino-coordinator
-      port: 8080
-      user: airflow
-      method: none
-      http_scheme: http
+      port: 8443
+      user: data_engineer
+      password: engineer123
+      method: ldap
+      http_scheme: https
       catalog: iceberg
-      schema: silver # Mặc định cho intermediate
+      schema: silver
       threads: 4
 
     marts:
       type: trino
       host: trino-coordinator
-      port: 8080
-      user: airflow
-      method: none
-      http_scheme: http
+      port: 8443
+      user: data_engineer
+      password: engineer123
+      method: ldap
+      http_scheme: https
       catalog: iceberg
-      schema: gold # Mặc định cho marts
+      schema: gold
       threads: 4

@@ -18,7 +18,7 @@ stg_creditcard as (
 select
     {{ dbt_utils.generate_surrogate_key(['stg_salesorderheader.creditcardid']) }} as credit_card_id_WID,
     cast(stg_salesorderheader.creditcardid as bigint) as INTEGRATION_ID,
-    stg_creditcard.cardtype
+    stg_creditcard.cardtype 
 from stg_salesorderheader
 left join stg_creditcard
   on stg_salesorderheader.creditcardid = stg_creditcard.creditcardid
