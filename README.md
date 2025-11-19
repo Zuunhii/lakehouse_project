@@ -1,7 +1,7 @@
 🏗️ Lakehouse Project
 
 📝 Dẫn Dắt: Hành Trình Phát Triển của Kiến Trúc Dữ Liệu
-- Khởi Đầu với Data Warehouse (Kho Dữ Liệu)
+Khởi Đầu với Data Warehouse (Kho Dữ Liệu)
 Trong giai đoạn đầu của kỷ nguyên dữ liệu, các doanh nghiệp nhận ra rằng việc phân tích các báo cáo phức tạp trực tiếp trên cơ sở dữ liệu giao dịch hàng ngày là không khả thi. Điều này làm giảm hiệu suất hệ thống kinh doanh cốt lõi.
 
 Vấn đề đặt ra: Cần một nơi riêng biệt, có cấu trúc để lưu trữ dữ liệu đã được làm sạch, sẵn sàng cho các phân tích chuyên sâu (OLAP).
@@ -10,7 +10,7 @@ Giải pháp: Data Warehouse (DW) ra đời. DW mang lại độ tin cậy cao n
 
 Nhưng sau đó... Khi lượng dữ liệu bùng nổ, đặc biệt là các loại dữ liệu mới như log, sensor, hình ảnh, và video (dữ liệu phi cấu trúc), DW bắt đầu bộc lộ nhược điểm. Nó quá đắt đỏ, quá cứng nhắc, và gần như không thể xử lý các loại dữ liệu thô này.
 
-- Sự Trỗi Dậy của Data Lake (Hồ Dữ Liệu)
+Sự Trỗi Dậy của Data Lake (Hồ Dữ Liệu)
 Để đối phó với sự bùng nổ dữ liệu thô và nhu cầu về một nền tảng chi phí thấp cho Machine Learning (ML) và Data Science, Data Lake xuất hiện.
 
 Vấn đề đặt ra: Cần một nơi có khả năng lưu trữ mọi loại dữ liệu ở dạng thô với chi phí cực thấp, không giới hạn dung lượng, và linh hoạt cho các thuật toán AI/ML.
@@ -19,7 +19,7 @@ Giải pháp: Data Lake (DL) được xây dựng trên nền tảng lưu trữ 
 
 Tuy nhiên, đây là rào cản... Sự linh hoạt đó phải trả giá bằng độ tin cậy. Data Lake thiếu các tính năng quản lý giao dịch (ACID), dẫn đến vấn đề về chất lượng và tính nhất quán của dữ liệu. Việc thực hiện các báo cáo BI nghiêm ngặt trên Data Lake trở nên rủi ro và khó khăn, thường biến nó thành "Data Swamp" (Đầm lầy dữ liệu).
 
-- Nhu Cầu Hợp Nhất và Sự Ra Đời của Lakehouse
+Nhu Cầu Hợp Nhất và Sự Ra Đời của Lakehouse
 Các tổ chức thấy mình bị kẹt trong việc phải duy trì cả hai hệ thống: DW cho BI đáng tin cậy và DL cho AI/ML linh hoạt.
 
 Vấn đề đặt ra: Việc duy trì hai hệ thống song song tạo ra sự phức tạp, trùng lặp dữ liệu, và độ trễ cao do phải di chuyển dữ liệu liên tục giữa hai nơi. Chi phí vận hành tăng lên, và việc tạo ra một nguồn dữ liệu chân thật duy nhất (Single Source of Truth) trở nên bất khả thi.
