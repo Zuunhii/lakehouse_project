@@ -1,6 +1,5 @@
 🏗️ Lakehouse Project
 
-📝 Dẫn Dắt: Hành Trình Phát Triển của Kiến Trúc Dữ Liệu
 Khởi Đầu với Data Warehouse (Kho Dữ Liệu)
 Trong giai đoạn đầu của kỷ nguyên dữ liệu, các doanh nghiệp nhận ra rằng việc phân tích các báo cáo phức tạp trực tiếp trên cơ sở dữ liệu giao dịch hàng ngày là không khả thi. Điều này làm giảm hiệu suất hệ thống kinh doanh cốt lõi.
 
