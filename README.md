@@ -1,7 +1,32 @@
 🏗️ Lakehouse Project
 
-Lakehouse Project là mô hình mô phỏng kiến trúc dữ liệu hiện đại (Modern Data Architecture) kết hợp giữa Data Lake và Data Warehouse, được triển khai hoàn toàn bằng Docker Compose.
-Dự án xây dựng một mini data platform gồm đầy đủ các thành phần cốt lõi: lưu trữ dữ liệu, định dạng bảng, query engine, orchestration và transformation.
+📖 Bối Cảnh: Sự Tiến Hóa của Kiến Trúc Dữ Liệu
+Kiến trúc Lakehouse ra đời để giải quyết những hạn chế cố hữu của các mô hình lưu trữ dữ liệu truyền thống, đặc biệt là sự phân tách giữa Kho Dữ Liệu (Warehouse) và Hồ Dữ Liệu (Data Lake).
+
+1. Kỷ Nguyên Data Warehouse (DW)
+Mục tiêu: Phục vụ các ứng dụng Báo cáo và Phân tích Kinh doanh (BI) truyền thống.
+
+Đặc điểm: Dữ liệu có cấu trúc cao (Schema-on-Write), cung cấp Độ tin cậy và Tính nhất quán (ACID).
+
+Hạn chế: Chi phí cao, không linh hoạt, khó xử lý Dữ liệu phi cấu trúc (Unstructured Data) và Dữ liệu thô.
+
+2. Kỷ Nguyên Data Lake (DL)
+Mục tiêu: Lưu trữ tất cả các loại dữ liệu (thô, phi cấu trúc) với chi phí thấp để phục vụ Data Science và Machine Learning (ML).
+
+Đặc điểm: Dữ liệu được lưu trữ nguyên trạng (Schema-on-Read), linh hoạt và mở rộng vô hạn.
+
+Hạn chế: Thiếu ACID, khó đảm bảo Chất lượng dữ liệu (dẫn đến "Data Swamp"), không đủ độ tin cậy cho các tác vụ BI quan trọng.
+
+3. Vấn Đề Cốt Lõi (The Data Gap)
+Việc duy trì hai hệ thống song song (Warehouse cho BI và Lake cho ML) dẫn đến:
+
+Phân mảnh Dữ liệu (Data Silos): Dữ liệu bị trùng lặp, phải di chuyển liên tục, gây ra độ trễ (latency) và tốn kém chi phí ETL/ELT.
+
+Phức tạp trong Quản trị: Yêu cầu quản lý và bảo mật trên hai nền tảng khác nhau.
+
+🌟 Giải Pháp: Data Lakehouse
+Lakehouse là một kiến trúc thống nhất, kết hợp những ưu điểm tốt nhất của Data Warehouse và Data Lake trên cùng một nền tảng lưu trữ dữ liệu mở và chi phí thấp.
+
 
 
 <img width="1022" height="603" alt="image" src="https://github.com/user-attachments/assets/ab61e5a0-1813-42ac-9c7a-7a6783bae167" />
