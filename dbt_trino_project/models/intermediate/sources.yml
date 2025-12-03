@@ -10,8 +10,11 @@ sources:
       - name: silver_person_countryregion
       - name: silver_person_person
       - name: silver_person_stateprovince
+      - name: silver_person_personphone   
+      - name: silver_person_emailaddress  
+      - name: silver_person_businessentityaddress 
       - name: silver_production_product # Thêm bảng này vào
-      - name: silver_production_productcategory
+      - name: silver_production_category
       - name: silver_production_productsubcategory
       - name: silver_sales_creditcard
       - name: silver_sales_customer

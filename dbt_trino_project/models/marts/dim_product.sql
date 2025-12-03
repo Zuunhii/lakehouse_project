@@ -7,7 +7,7 @@ stg_product_subcateg as (
   select * from {{ source('silver_src', 'silver_production_productsubcategory') }}
 ),
 stg_product_category as (
-  select * from {{ source('silver_src', 'silver_production_productcategory') }}
+  select * from {{ source('silver_src', 'silver_production_category') }}
 )
 
 select

@@ -1,8 +1,25 @@
 version: 2
 
 sources:
-  - name: silver_src
+  - name: bronze_src
     database: iceberg         # catalog Iceberg
     schema: bronze            # schema Iceberg cho Bronze
     tables:
-      - name: silve_person_address
+      - name: bronze_person_address
+      - name: bronze_person_countryregion
+      - name: bronze_person_person
+      - name: bronze_person_stateprovince
+      - name: bronze_person_personphone
+      - name: bronze_person_emailaddress
+      - name: bronze_person_businessentityaddress
+      - name: bronze_production_product
+      - name: bronze_production_productcategory
+      - name: bronze_production_productsubcategory
+      - name: bronze_sales_creditcard
+      - name: bronze_sales_customer
+      - name: bronze_sales_salesorderdetail
+      - name: bronze_sales_salesorderheader
+      - name: bronze_sales_salesorderheadersalesreason
+      - name: bronze_sales_salesreason
+      - name: bronze_sales_store
+

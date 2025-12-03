@@ -15,11 +15,13 @@ import boto3
 import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
-import requests
-from requests import Session
+# Loại bỏ requests và Session vì dùng TrinoHook
+# import requests 
+# from requests import Session 
 
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.providers.trino.hooks.trino import TrinoHook # <<< IMPORT TRINOHOOK
 
 # ========== CONFIG ==========
 BUCKET = "lakehouse"
@@ -36,34 +38,22 @@ ICEBERG_CATALOG = "iceberg"
 ICEBERG_SCHEMA = "silver"
 ICEBERG_PREFIX = "silver/iceberg"
 
-TRINO_ENDPOINT = "http://trino-coordinator:8080/v1/statement"
-TRINO_USER = "airflow"
+# Loại bỏ các biến cấu hình Trino thủ công
+# TRINO_ENDPOINT = "http://trino-coordinator:8080/v1/statement"
+# TRINO_USER = "airflow"
+# SESSION: Session = Session()
 
-SESSION: Session = Session()
+TRINO_CONN_ID = "trino_default" # <<< Dùng connection ID đã cấu hình trong Airflow UI
 
 # ========== UTILS ==========
-def trino_sql(sql: str, timeout: int = 600) -> dict:
-    """Execute SQL trong Trino"""
-    headers = {"X-Trino-User": TRINO_USER}
-    r = SESSION.post(TRINO_ENDPOINT, data=sql.encode("utf-8"), headers=headers, timeout=timeout)
-    r.raise_for_status()
-    payload = r.json()
-    
-    if "error" in payload:
-        raise RuntimeError(json.dumps(payload["error"]))
-    
-    next_uri = payload.get("nextUri")
-    while next_uri:
-        time.sleep(0.1)
-        r = SESSION.get(next_uri, timeout=timeout)
-        r.raise_for_status()
-        payload = r.json()
-        if "error" in payload:
-            raise RuntimeError(json.dumps(payload["error"]))
-        next_uri = payload.get("nextUri")
-    
-    return payload
+def get_trino_hook() -> TrinoHook:
+    """Hàm tạo TrinoHook dùng kết nối trino_default"""
+    return TrinoHook(trino_conn_id=TRINO_CONN_ID)
 
+# Loại bỏ hàm trino_sql thủ công
+# def trino_sql(sql: str, timeout: int = 600) -> dict:
+#     # ... (code bị loại bỏ)
+#     pass
 
 def ident(x: str) -> str:
     return '"' + x.replace('"', '""') + '"'
@@ -100,6 +90,9 @@ def task_crawl_bikes(**context):
         
         # Kiểm tra file có data không
         with open(temp_file, 'r') as f:
+            # Sửa lỗi: json.load(f) sẽ load hết file, nếu file lớn sẽ bị lỗi bộ nhớ. 
+            # Dùng pd.read_json để đọc, hoặc đọc từng dòng nếu cần kiểm tra nhanh.
+            # Tạm giữ nguyên logic cũ nhưng cảnh báo về vấn đề bộ nhớ nếu data quá lớn.
             data = json.load(f)
             if not data:
                 raise ValueError("File JSON rỗng!")
@@ -201,29 +194,32 @@ def task_register_to_iceberg(**context):
     
     print(f"[INFO] Creating Iceberg table: {iceberg_tbl}")
     
+    # Lấy Hook
+    hook = get_trino_hook()
+    
     # Drop old
-    trino_sql(f"DROP TABLE IF EXISTS {iceberg_tbl}")
-    trino_sql(f"DROP TABLE IF EXISTS {hive_tbl}")
+    hook.run(f"DROP TABLE IF EXISTS {iceberg_tbl}") # <<< SỬ DỤNG HOOK
+    hook.run(f"DROP TABLE IF EXISTS {hive_tbl}") # <<< SỬ DỤNG HOOK
     
     # Create temp Hive table
-    trino_sql(f"CREATE SCHEMA IF NOT EXISTS {HIVE_CATALOG}.{HIVE_SCHEMA}")
+    hook.run(f"CREATE SCHEMA IF NOT EXISTS {HIVE_CATALOG}.{HIVE_SCHEMA}") # <<< SỬ DỤNG HOOK
     create_hive_sql = (
         f"CREATE TABLE {hive_tbl} ({', '.join(cols_sql)}) "
         f"WITH (external_location = '{source_dir}', format = 'PARQUET')"
     )
-    trino_sql(create_hive_sql)
+    hook.run(create_hive_sql) # <<< SỬ DỤNG HOOK
     
     # CTAS to Iceberg
-    trino_sql(f"CREATE SCHEMA IF NOT EXISTS {ICEBERG_CATALOG}.{ICEBERG_SCHEMA}")
+    hook.run(f"CREATE SCHEMA IF NOT EXISTS {ICEBERG_CATALOG}.{ICEBERG_SCHEMA}") # <<< SỬ DỤNG HOOK
     ctas_sql = (
         f"CREATE TABLE {iceberg_tbl} "
         f"WITH (location = '{iceberg_location}') "
         f"AS SELECT * FROM {hive_tbl}"
     )
-    trino_sql(ctas_sql)
+    hook.run(ctas_sql) # <<< SỬ DỤNG HOOK
     
     # Drop temp
-    trino_sql(f"DROP TABLE IF EXISTS {hive_tbl}")
+    hook.run(f"DROP TABLE IF EXISTS {hive_tbl}") # <<< SỬ DỤNG HOOK
     
     print(f"[DONE] Registered to {iceberg_tbl}")
     return iceberg_tbl
@@ -241,11 +237,16 @@ def task_verify_data(**context):
     FROM {table}
     """
     
-    result = trino_sql(sql)
+    hook = get_trino_hook() # <<< LẤY HOOK
+    
+    # Dùng get_records để lấy dữ liệu thay vì gọi API thủ công
+    result = hook.get_records(sql) 
+    
     print(f"[INFO] Verification result: {result}")
     
-    if result.get('data'):
-        row = result['data'][0]
+    if result:
+        row = result[0]
+        # Chú ý: TrinoHook.get_records() trả về list of lists.
         print(f"[STATS] Total bikes: {row[0]}, Unique: {row[1]}, Latest: {row[2]}")
     
     return "verified"

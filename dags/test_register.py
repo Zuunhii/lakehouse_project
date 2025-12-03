@@ -28,7 +28,7 @@ MINIO_SECRET_KEY = "minio123"
 BUCKET = "lakehouse"
 
 # Nơi chứa Parquet nguồn (đã nạp sẵn từ MSSQL)
-BRONZE_ROOT = "bronze/adventureworks"
+BRONZE_ROOT = "bronze/adventureworksdw"
 
 # Prefix CHUNG chứa các bảng Iceberg (mỗi bảng 1 thư mục con riêng)
 ICEBERG_PREFIX = "silver/iceberg"   # -> lakehouse/silver/iceberg/<schema>/<table>/

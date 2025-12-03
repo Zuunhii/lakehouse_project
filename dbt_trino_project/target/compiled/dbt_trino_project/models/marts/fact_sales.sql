@@ -37,13 +37,13 @@ select
     lower(to_hex(md5(to_utf8(cast(coalesce(cast(h.orderdate as varchar), '_dbt_utils_surrogate_key_null_') as varchar)))))        as order_date_id_WID,
 
     -- Natural keys / trace
-    d.salesorderid,
-    d.salesorderdetailid,
-    d.productid,
-    h.customerid,
-    h.creditcardid,
-    h.shiptoaddressid,
-    h.order_status,
+    d.salesorderid AS sales_order_id,
+    d.salesorderdetailid AS sales_order_detail_id,
+    -- d.productid,
+    -- h.customerid,
+    -- h.creditcardid,
+    -- h.shiptoaddressid,
+    -- h.order_status,
     h.orderdate,
 
     -- Measures

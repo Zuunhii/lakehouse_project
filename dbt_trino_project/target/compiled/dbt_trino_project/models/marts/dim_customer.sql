@@ -44,12 +44,12 @@ select
   cast(stg_customer.customerid as bigint) as INTEGRATION_ID,
 
   -- Person
-  stg_person.businessentityid,
+  stg_person.businessentityid AS person_business_entity_id,
   stg_person.fullname,
 
   -- Store
-  stg_store.storebusinessentityid,
-  stg_store.storename
+  stg_store.storebusinessentityid AS store_business_entity_id,
+  stg_store.storename AS store_name
 
 from stg_customer
 left join stg_person
