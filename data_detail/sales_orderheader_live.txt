@@ -1,0 +1,93 @@
+1. purchaseordernumber (Mã đơn hàng mua)
+
+Cách làm bẩn: Tạo các mã đơn hàng mua ngẫu nhiên có độ dài hoặc cấu trúc không đúng.
+
+Ví dụ: Mã "PO123" hoặc "POTEST123", không theo quy tắc chuẩn.
+
+Cách làm sạch: Kiểm tra chiều dài và định dạng của mã (ví dụ: có ít nhất 10 ký tự, bắt đầu bằng "PO").
+
+Nếu không khớp, có thể loại bỏ hoặc sửa lại mã hợp lệ.
+
+2. accountnumber (Số tài khoản)
+
+Cách làm bẩn: Tạo các số tài khoản có cấu trúc không hợp lệ (chẳng hạn: có ký tự không phải là số hoặc có định dạng không đúng).
+
+Ví dụ: "12345-67X89" hoặc "0000-000000".
+
+Cách làm sạch: Kiểm tra xem tài khoản có tuân theo định dạng chuẩn không (ví dụ: số tài khoản có định dạng "XX-XXXXX" hoặc "10-40#####").
+
+Nếu có ký tự không hợp lệ, sửa lại hoặc loại bỏ.
+
+3. creditcardapprovalcode (Mã phê duyệt thẻ tín dụng)
+
+Cách làm bẩn: Tạo mã phê duyệt thẻ tín dụng ngẫu nhiên không hợp lệ hoặc không đúng chuẩn.
+
+Ví dụ: Mã phê duyệt có định dạng sai như "APPROVED-XYZ123".
+
+Cách làm sạch: Kiểm tra định dạng mã phê duyệt (phải có tiền tố "APPROVED-" và sau đó là các số).
+
+Sửa mã không hợp lệ thành định dạng đúng hoặc loại bỏ.
+
+4. subtotal (Tổng giá trị trước thuế)
+
+Cách làm bẩn: Tạo giá trị không hợp lý như giá trị âm hoặc quá lớn so với các đơn hàng bình thường.
+
+Ví dụ: subtotal = -1000 hoặc subtotal = 10000.
+
+Cách làm sạch: Loại bỏ giá trị âm và quá cao. Đảm bảo giá trị subtotal phải nằm trong phạm vi hợp lý, ví dụ: từ 50 đến 500.
+
+Nếu không hợp lệ, sửa lại hoặc loại bỏ.
+
+5. taxamt (Số thuế)
+
+Cách làm bẩn: Tạo giá trị thuế không hợp lý, như thuế bằng 0% hoặc 100%.
+
+Ví dụ: taxamt = 0 hoặc taxamt = subtotal * 2.
+
+Cách làm sạch: Kiểm tra rằng taxamt phải nằm trong một tỷ lệ hợp lý so với subtotal, ví dụ: từ 5% đến 15%.
+
+Nếu thuế quá cao hoặc quá thấp, sửa lại hoặc loại bỏ.
+
+6. totaldue (Tổng số tiền cần thanh toán)
+
+Cách làm bẩn: Tạo giá trị tổng tiền không hợp lý, chẳng hạn giá trị thấp hơn subtotal hoặc không khớp với các khoản phí khác (thuế và phí vận chuyển).
+
+Ví dụ: totaldue = subtotal - random.uniform(100, 200).
+
+Cách làm sạch: Kiểm tra rằng totaldue phải luôn lớn hơn hoặc bằng subtotal cộng với taxamt và freight.
+
+Nếu không khớp, sửa lại hoặc loại bỏ.
+
+7. shipdate và duedate (Ngày giao hàng và ngày dự kiến giao hàng)
+
+Cách làm bẩn: Đảo lộn các ngày, chẳng hạn như shipdate sớm hơn duedate.
+
+Ví dụ: shipdate = 2011-07-10, duedate = 2011-07-05.
+
+Cách làm sạch: Đảm bảo rằng shipdate không được sớm hơn duedate.
+
+Nếu có sự không hợp lý, sửa lại các ngày cho phù hợp.
+
+Tổng kết:
+
+Các trường bị làm bẩn:
+
+purchaseordernumber: Mã không hợp lệ (quá ngắn, không theo định dạng chuẩn).
+
+accountnumber: Tài khoản có cấu trúc sai (ký tự không hợp lệ).
+
+creditcardapprovalcode: Mã phê duyệt không hợp lệ.
+
+subtotal: Giá trị âm hoặc quá cao.
+
+taxamt: Thuế không hợp lý (quá cao hoặc quá thấp).
+
+totaldue: Tổng thanh toán không hợp lý (không khớp với subtotal, taxamt, freight).
+
+shipdate và duedate: Các ngày không hợp lý (shipdate trước duedate).
+
+Các bước làm sạch:
+
+Kiểm tra các giá trị không hợp lệ trong các trường trên và loại bỏ hoặc sửa lại.
+
+Đảm bảo rằng các giá trị nằm trong các phạm vi hợp lý hoặc theo quy tắc định dạng chuẩn.

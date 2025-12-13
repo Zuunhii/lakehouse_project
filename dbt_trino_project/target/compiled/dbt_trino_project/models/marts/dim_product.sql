@@ -7,7 +7,7 @@ stg_product_subcateg as (
   select * from "iceberg"."silver"."silver_production_productsubcategory"
 ),
 stg_product_category as (
-  select * from "iceberg"."silver"."silver_production_productcategory"
+  select * from "iceberg"."silver"."silver_production_category"
 )
 
 select

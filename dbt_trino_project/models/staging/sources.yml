@@ -22,4 +22,5 @@ sources:
       - name: bronze_sales_salesorderheadersalesreason
       - name: bronze_sales_salesreason
       - name: bronze_sales_store
+      - name: bronze_sales_salesorderheader_LIVE
 

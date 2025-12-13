@@ -8,13 +8,14 @@ with DAG(
     start_date=datetime(2025, 1, 1),
     schedule_interval=None,
     catchup=False,
-    max_active_runs=1,  # đủ để tránh chồng run cho DAG này
+    max_active_runs=1,
     default_args={"retries": 0, "execution_timeout": timedelta(minutes=10)},
     tags=["dbt", "adhoc", "cosmos"],
     params={
         "select": "dim_address",
         "exclude": "",
         "full_refresh": False,
+        "run_date": None,  # Default to None, will be replaced if passed in dag_run.conf
     },
 ) as dag:
 
@@ -28,11 +29,14 @@ with DAG(
         ),
         dbt_bin="/home/airflow/.local/bin/dbt",
 
-        select="{{ params.select }}",
-        exclude="{{ params.exclude }}",
-        full_refresh="{{ params.full_refresh }}",
+        select="{{ dag_run.conf.get('select', params.select) }}",
+        exclude="{{ dag_run.conf.get('exclude', params.exclude) }}",
+        
+        # Use the correct template syntax for full_refresh
+        full_refresh="{{ dag_run.conf.get('full_refresh', params.full_refresh) }}",  # Boolean value
 
+        # Pass the run_date directly to DBT
+        vars={
+            "run_date": "{{ dag_run.conf.get('run_date', params.run_date) }}"  # This will use the value from dag_run.conf or fallback to params
+        },
     )
-
-
-

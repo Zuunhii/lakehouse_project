@@ -133,6 +133,8 @@ services:
       - ./dbt_trino_project:/opt/airflow/dbt 
       - ./crawlers:/opt/airflow/crawlers  
       # (không cần mount requirements.txt nữa vì đã COPY vào image trong Dockerfile)
+      # - ./.venv:/opt/airflow/.venv
+      # - ./SCRIPTS:/opt/airflow/SCRIPTS
     ports:
       - "8081:8080"
     command: bash -lc "exec airflow webserver"
@@ -158,6 +160,8 @@ services:
       - airflow_logs:/opt/airflow/logs
       - ./dbt_trino_project:/opt/airflow/dbt
       - ./crawlers:/opt/airflow/crawlers  
+      # - ./.venv:/opt/airflow/.venv
+      # - ./SCRIPTS:/opt/airflow/SCRIPTS
     ports:
       - "8088:8088"
     command: bash -lc "exec airflow scheduler"
