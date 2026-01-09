@@ -51,47 +51,30 @@ Gold – dữ liệu tổng hợp, phục vụ phân tích và dashboard.
 | **Python utilities**     | Tooling            | Hỗ trợ đọc/ghi file, đăng ký Iceberg schema, chuyển đổi dữ liệu giữa các tầng.                          |
 | **Metabase (optional)**  | BI / Visualization | Kết nối với Trino để trực quan hóa dữ liệu qua dashboard, chart và báo cáo.                             |
 
+Cấu trúc thư mục dự án 
 ```
-.
 ├── containers
-│   ├── airflow
-│   ├── metabase
-│   ├── minio
-│   ├── monitoring
-│   ├── nessie
-│   ├── spark
-│   └── trino
+│   ├── airflow/           # Thư mục chứa file dockerfile của airflow
+│   ├── setup/             # Thử mục setup bucket cho MiniO
 │
-├── crawlers
-│   ├── CrawlJob
-│   ├── CrawlPackage
-│   ├── SeleniumPackage
-│   └── chrome.yml
+├── dags/                  # Nơi chứa các file định nghĩa DAG
 │
-├── dags
-│   └── *.py
+├── dbt_trino_project      # dbt project dùng Trino làm engine
+│   ├── models             # dbt models (stagging, intermediate, marts)
+│   ├── macros             # dbt macros tái sử dụng
+│   ├── dbt_project.yml    # dbt project configuration
+│   └── profiles.yml       # File này định nghĩa thông tin catalog, schema, user và endpoint của Trino
 │
-├── dbt_trino_project
-│   ├── models
-│   ├── macros
-│   ├── seeds
-│   └── dbt_project.yml
+├── data_detail/            # text chú thích
 │
-├── data_detail
-├── run-trino-sql
-│   └── *.sql
+├── conf/                   # Thư mục chứa file cấu hình của hive metastore
+├── etc/                    # Các file cấu hình trino
+│   └── catalog/            # Cấu hình iceberg
+├── SCRIPTS/                # Các Script python
 │
-├── bash
-│   └── *.sh
-│
-├── conf
-├── etc
-├── SCRIPTS
-│
-├── docker-compose.yml
-├── Makefile
-├── requirements.txt
-└── .env.example
+├── docker-compose.yml      # file docker-compose chính của dự án
+├── Makefile                
+├── requirements.txt        # file yêu cầu các thư viện
 ```
 
 
