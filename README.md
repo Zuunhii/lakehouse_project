@@ -52,6 +52,48 @@ Gold – dữ liệu tổng hợp, phục vụ phân tích và dashboard.
 | **Metabase (optional)**  | BI / Visualization | Kết nối với Trino để trực quan hóa dữ liệu qua dashboard, chart và báo cáo.                             |
 
 
+.
+├── containers
+│   ├── airflow                  # Docker config cho Airflow
+│   ├── metabase                 # Docker config cho Metabase
+│   ├── minio                    # Docker config cho MinIO
+│   ├── monitoring               # Prometheus / Grafana / Alertmanager
+│   ├── nessie                   # Project Nessie (Iceberg catalog)
+│   ├── spark                    # Spark cluster & Spark client
+│   └── trino                    # Trino coordinator / worker
+│
+├── crawlers
+│   ├── CrawlJob                 # Logic crawl chính
+│   ├── CrawlPackage             # Hàm tiện ích crawl (parse, fetch)
+│   ├── SeleniumPackage          # Selenium automation
+│   └── chrome.yml               # Selenium Grid config
+│
+├── dags
+│   └── *.py                     # Airflow DAGs
+│
+├── dbt_trino_project
+│   ├── models                   # dbt models (silver / gold)
+│   ├── macros                   # dbt macros
+│   ├── seeds                    # Static seed data
+│   └── dbt_project.yml
+│
+├── data_detail                  # Metadata / data mẫu / ghi chú dataset
+│
+├── run-trino-sql
+│   └── *.sql                    # SQL chạy trực tiếp trên Trino
+│
+├── bash
+│   └── *.sh                     # Script hỗ trợ khởi động / debug
+│
+├── conf                         # Cấu hình chung
+├── etc                          # Config phụ
+├── SCRIPTS                      # Script tiện ích
+│
+├── docker-compose.yml           # Compose stack chính
+├── Makefile                     # Task automation
+├── requirements.txt             # Python dependencies
+└── .env.example                 # Mẫu biến môi trường
+
 
 
 📦 Dữ liệu sử dụng: AdventureWorks
