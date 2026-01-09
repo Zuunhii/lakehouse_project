@@ -51,48 +51,48 @@ Gold – dữ liệu tổng hợp, phục vụ phân tích và dashboard.
 | **Python utilities**     | Tooling            | Hỗ trợ đọc/ghi file, đăng ký Iceberg schema, chuyển đổi dữ liệu giữa các tầng.                          |
 | **Metabase (optional)**  | BI / Visualization | Kết nối với Trino để trực quan hóa dữ liệu qua dashboard, chart và báo cáo.                             |
 
-
+```
 .
 ├── containers
-│   ├── airflow                  # Docker config cho Airflow
-│   ├── metabase                 # Docker config cho Metabase
-│   ├── minio                    # Docker config cho MinIO
-│   ├── monitoring               # Prometheus / Grafana / Alertmanager
-│   ├── nessie                   # Project Nessie (Iceberg catalog)
-│   ├── spark                    # Spark cluster & Spark client
-│   └── trino                    # Trino coordinator / worker
+│   ├── airflow
+│   ├── metabase
+│   ├── minio
+│   ├── monitoring
+│   ├── nessie
+│   ├── spark
+│   └── trino
 │
 ├── crawlers
-│   ├── CrawlJob                 # Logic crawl chính
-│   ├── CrawlPackage             # Hàm tiện ích crawl (parse, fetch)
-│   ├── SeleniumPackage          # Selenium automation
-│   └── chrome.yml               # Selenium Grid config
+│   ├── CrawlJob
+│   ├── CrawlPackage
+│   ├── SeleniumPackage
+│   └── chrome.yml
 │
 ├── dags
-│   └── *.py                     # Airflow DAGs
+│   └── *.py
 │
 ├── dbt_trino_project
-│   ├── models                   # dbt models (silver / gold)
-│   ├── macros                   # dbt macros
-│   ├── seeds                    # Static seed data
+│   ├── models
+│   ├── macros
+│   ├── seeds
 │   └── dbt_project.yml
 │
-├── data_detail                  # Metadata / data mẫu / ghi chú dataset
-│
+├── data_detail
 ├── run-trino-sql
-│   └── *.sql                    # SQL chạy trực tiếp trên Trino
+│   └── *.sql
 │
 ├── bash
-│   └── *.sh                     # Script hỗ trợ khởi động / debug
+│   └── *.sh
 │
-├── conf                         # Cấu hình chung
-├── etc                          # Config phụ
-├── SCRIPTS                      # Script tiện ích
+├── conf
+├── etc
+├── SCRIPTS
 │
-├── docker-compose.yml           # Compose stack chính
-├── Makefile                     # Task automation
-├── requirements.txt             # Python dependencies
-└── .env.example                 # Mẫu biến môi trường
+├── docker-compose.yml
+├── Makefile
+├── requirements.txt
+└── .env.example
+```
 
 
 
