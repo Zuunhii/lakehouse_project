@@ -5,16 +5,17 @@ jobs:
   
   integration-postgres:
     docker:
-      - image: cimg/python:3.9
-      - image: cimg/postgres:9.6
+      - image: cimg/python:3.13.7
+      - image: cimg/postgres:17.5
         environment:
           POSTGRES_USER: root
     environment:
-      POSTGRES_TEST_HOST: localhost
-      POSTGRES_TEST_USER: root
-      POSTGRES_TEST_PASS: ''
-      POSTGRES_TEST_PORT: 5432
-      POSTGRES_TEST_DBNAME: circle_test
+      POSTGRES_HOST: localhost
+      POSTGRES_USER: root
+      DBT_ENV_SECRET_POSTGRES_PASS: ''
+      POSTGRES_PORT: 5432
+      POSTGRES_DATABASE: circle_test
+      POSTGRES_SCHEMA: dbt_utils_integration_tests_postgres
 
     steps:
       - checkout
@@ -32,7 +33,7 @@ jobs:
 
   integration-redshift:
     docker:
-      - image: cimg/python:3.9
+      - image: cimg/python:3.13.7
     steps:
       - checkout
       - run: pip install --pre dbt-redshift -r dev-requirements.txt
@@ -48,7 +49,7 @@ jobs:
 
   integration-snowflake:
     docker:
-      - image: cimg/python:3.9
+      - image: cimg/python:3.13.7
     steps:
       - checkout
       - run: pip install --pre dbt-snowflake -r dev-requirements.txt
@@ -66,13 +67,13 @@ jobs:
     environment:
       BIGQUERY_SERVICE_KEY_PATH: "/home/circleci/bigquery-service-key.json"
     docker:
-      - image: cimg/python:3.9
+      - image: cimg/python:3.13.7
     steps:
       - checkout
       - run: pip install --pre dbt-bigquery -r dev-requirements.txt
       - run:
-          name: "Set up credentials"
-          command: echo $BIGQUERY_SERVICE_ACCOUNT_JSON > ${HOME}/bigquery-service-key.json
+          name: Setup Environment Variables
+          command: echo 'export BIGQUERY_KEYFILE_JSON="$BIGQUERY_SERVICE_ACCOUNT_JSON"' >> "$BASH_ENV"
       - run:
           name: "Run OG Tests - BigQuery"
           command: ./run_test.sh bigquery
@@ -87,7 +88,8 @@ workflows:
   version: 2
   test-all:
     jobs:
-      - integration-postgres
+      - integration-postgres:
+          context: profile-postgres
       - integration-redshift:
           context: profile-redshift
           requires:

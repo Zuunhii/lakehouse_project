@@ -24,3 +24,4 @@ sources:
       - name: silver_sales_salesreason
       - name: silver_sales_store
       - name: silver_sales_salesorderheader_LIVE 
+      - name: silver_sales_salesorderdetail_LIVE

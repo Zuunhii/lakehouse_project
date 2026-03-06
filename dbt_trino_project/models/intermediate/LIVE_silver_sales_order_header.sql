@@ -13,7 +13,13 @@
   => Model luôn xử lý đúng 1 ngày etl_date = run_date
 #}
 
-{% set run_date = var('run_date') %}
+{% set run_date = var('run_date', none) %}
+
+{% if flags.WHICH in ['run', 'build', 'test'] and run_date is none %}
+  {{ exceptions.raise_compiler_error(
+      "Missing required var: run_date (YYYY-MM-DD)"
+  ) }}
+{% endif %}
 
 with bronze_raw as (
 

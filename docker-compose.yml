@@ -127,6 +127,15 @@ services:
       AIRFLOW__CORE__DAG_RUN_CONF_ENABLED: "True"
       AIRFLOW__WEBSERVER__SHOW_TRIGGER_FORM_IF_NO_PARAMS: "True"
       DBT_PROFILES_DIR: /opt/airflow/dbt
+      AIRFLOW__CORE__DEFAULT_TIMEZONE: Asia/Ho_Chi_Minh
+      AIRFLOW__WEBSERVER__DEFAULT_UI_TIMEZONE: Asia/Ho_Chi_Minh
+      TZ: Asia/Ho_Chi_Minh
+      OLLAMA_URL: "http://ollama:11434"
+      OLLAMA_MODEL: "qwen2.5-coder:3b-instruct"
+      OLLAMA_TIMEOUT: "120"
+      OLLAMA_TEMPERATURE: "0.2"
+
+
     volumes:
       - ./dags:/opt/airflow/dags
       - airflow_logs:/opt/airflow/logs
@@ -155,6 +164,14 @@ services:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db:5432/airflow
       AIRFLOW__CORE__DAG_RUN_CONF_ENABLED: "True"
       DBT_PROFILES_DIR: /opt/airflow/dbt
+      AIRFLOW__CORE__DEFAULT_TIMEZONE: Asia/Ho_Chi_Minh
+      TZ: Asia/Ho_Chi_Minh
+      OLLAMA_URL: "http://ollama:11434"
+      OLLAMA_MODEL: "qwen2.5-coder:3b-instruct"
+      OLLAMA_TIMEOUT: "120"
+      OLLAMA_TEMPERATURE: "0.2"
+
+
     volumes:
       - ./dags:/opt/airflow/dags
       - airflow_logs:/opt/airflow/logs
@@ -202,6 +219,18 @@ services:
       JAVA_TIMEZONE: Asia/Bangkok
     networks: [trino-network]
 
+  ollama:
+    image: ollama/ollama:0.13.5
+    container_name: OLLAMA
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - trino-network
+    restart: unless-stopped
+
+
 
 
 volumes:
@@ -210,6 +239,7 @@ volumes:
   minio_data:  
   mariadb_data: 
   metabase_db_data:
+  ollama_data:
 
 networks:
   trino-network:

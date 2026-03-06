@@ -4,17 +4,17 @@ models:
 # ========================Dimension==========================
   - name: dim_product
     columns:
-      - name: product_id_WID 
+      - name: product_id_WID
         description: The surrogate key of the product
         tests:
           - not_null
           - unique
-      - name: INTEGRATION_ID 
+      - name: INTEGRATION_ID
         description: The natural key of the product
         tests:
           - not_null
           - unique
-      - name: product_name 
+      - name: product_name
         description: The product name
         tests:
           - not_null
@@ -63,7 +63,6 @@ models:
       - name: storename
         description: Tên cửa hàng (nếu là khách hàng Store)
 
-
   - name: dim_credit_card
     description: Dimension thẻ tín dụng (giữ PAN nguyên bản; hạn chế quyền SELECT trực tiếp).
     columns:
@@ -77,7 +76,6 @@ models:
         description: Loại thẻ theo nguồn (Visa/Mastercard/…)
         tests: [not_null]
 
-        
   - name: dim_order_status
     columns:
       - name: order_status_id_WID
@@ -92,15 +90,12 @@ models:
         description: Human-readable status label
         tests: [not_null]
 
-
-
-
 # ========================Fact==========================
-  - name: fact_sales_order
+  - name: fact_sales
     description: Grain = 1 row / (order_id)
     tests:
       - dbt_utils.unique_combination_of_columns:
-          combination_of_columns: [order_id_WID]   # hoặc [order_id_WID, line_number_WID] nếu grain theo dòng
+          combination_of_columns: [order_id_WID]
     columns:
       - name: order_id_WID
         tests: [not_null, unique]
@@ -131,4 +126,57 @@ models:
       - name: total_due
         tests:
           - dbt_utils.expression_is_true:
-              expression: "total_due >= 0"
+              expression: ">= 0"   # FIX: chỉ để phần điều kiện, không ghi "total_due >= 0"
+
+  - name: fact_sales_LIVE
+    description: "Grain = 1 row per (salesorderid, salesorderdetailid) per etl_date batch."
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns: ["salesorderid", "salesorderdetailid", "etl_date"]
+
+    columns:
+      - name: etl_date
+        tests:
+          - not_null
+
+      - name: salesorderid
+        tests:
+          - not_null
+
+      - name: salesorderdetailid
+        tests:
+          - not_null
+
+      - name: sales_id_wid
+        tests:
+          - not_null
+          - unique
+
+      - name: orderdate
+        tests:
+          - not_null
+
+      - name: unitprice
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"   # FIX
+
+      - name: orderqty
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"    # FIX
+
+      - name: revenue
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"   # FIX
+
+      - name: totaldue
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"   # FIX

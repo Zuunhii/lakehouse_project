@@ -14,6 +14,10 @@ from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 import urllib3
 from requests import Session
 
+import pendulum
+VN_TZ = pendulum.timezone("Asia/Ho_Chi_Minh")
+
+
 urllib3.disable_warnings()
 
 # =========================================
@@ -35,7 +39,7 @@ ICEBERG_TABLE = "iceberg.bronze.bronze_sales_salesorderheader_live"
 HIVE_CATALOG = "minio"
 HIVE_SCHEMA = "temp"
 
-CHECK_INTERVAL_SECS = 5 * 60  # 5 phút
+CHECK_INTERVAL_SECS = 1 * 60  # 5 phút
 
 TRINO_CONN_ID = "trino_default"
 
@@ -266,8 +270,6 @@ with DAG(
     dag_id="salesorderheader_ingest_LIVE_full_pipeline",
     start_date=days_ago(1),
 
-    # ❌ BỎ schedule nhiều lần trong ngày
-    # schedule_interval="0 4-9/1 * * *",
 
     # ✅ Để None: DAG này chỉ chạy khi bị trigger (từ DAG fake hoặc mày bấm tay)
     schedule_interval=None,

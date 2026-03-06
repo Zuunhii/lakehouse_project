@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from airflow import DAG
-from cosmos.operators import DbtRunOperator
+from cosmos.operators import DbtBuildOperator, DbtRunOperator
 from cosmos import ProfileConfig
 
 with DAG(
@@ -19,7 +19,7 @@ with DAG(
     },
 ) as dag:
 
-    DbtRunOperator(
+    DbtBuildOperator(
         task_id="dbt_run_selected",
         project_dir="/opt/airflow/dbt",
         profile_config=ProfileConfig(

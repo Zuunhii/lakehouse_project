@@ -268,8 +268,9 @@ person_geography as (
 
 select
     -- Surrogate key cho customer
-    {{ dbt_utils.generate_surrogate_key(['c.customerid']) }} as CustomerKey_WID,
-
+    {{ dbt_utils.generate_surrogate_key(['c.customerid']) }} as customer_id_WID,
+    -- Business key gốc
+    cast(c.customerid as bigint) as INTEGRATION_ID,
     -- GeographyKey
     geo.geographykey as GeographyKey,
 

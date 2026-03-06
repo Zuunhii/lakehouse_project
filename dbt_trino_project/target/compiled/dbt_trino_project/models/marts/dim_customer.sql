@@ -255,8 +255,9 @@ person_geography as (
 
 select
     -- Surrogate key cho customer
-    lower(to_hex(md5(to_utf8(cast(coalesce(cast(c.customerid as varchar), '_dbt_utils_surrogate_key_null_') as varchar))))) as CustomerKey_WID,
-
+    lower(to_hex(md5(to_utf8(cast(coalesce(cast(c.customerid as varchar), '_dbt_utils_surrogate_key_null_') as varchar))))) as customer_id_WID,
+    -- Business key gốc
+    cast(c.customerid as bigint) as INTEGRATION_ID,
     -- GeographyKey
     geo.geographykey as GeographyKey,
 
