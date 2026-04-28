@@ -31,7 +31,7 @@ Kết quả: Lakehouse cho phép chúng ta thực hiện tất cả các tác v�
 
 
 
-<img width="1022" height="603" alt="image" src="https://github.com/user-attachments/assets/ab61e5a0-1813-42ac-9c7a-7a6783bae167" />
+<img width="1920" height="1080" alt="db" src="https://github.com/user-attachments/assets/524c9762-183d-417f-a956-cd0074053aba" />
 
 Mô hình tổ chức dữ liệu theo ba tầng:
 Bronze – dữ liệu thô, nạp từ nguồn gốc.
